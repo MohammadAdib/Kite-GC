@@ -39,11 +39,13 @@
   const safeModes = $derived(allModes.filter((m) => !m.stick));
   const stickModes = $derived(allModes.filter((m) => m.stick));
 
-  // Modes with their own dedicated control (Guided toggle, RTL/Land hold buttons, Takeoff command,
-  // PX4 mission/hold modes) are not repeated as quick mode buttons. Per firmware: PX4's HOLD is the
-  // Guided toggle, but ArduRover's Hold is an ordinary mode with no other button.
+  // Modes with their own dedicated control (Guided toggle, RTL/Land hold buttons, PX4 mission/hold/
+  // takeoff modes) are not repeated as quick mode buttons. Per firmware: PX4's HOLD is the Guided
+  // toggle, but ArduRover's Hold is an ordinary mode with no other button. ArduPilot's Takeoff *button*
+  // is a Guided NAV_TAKEOFF (copter / VTOL), not ArduPlane's TAKEOFF mode (fixed-wing auto takeoff),
+  // so that mode stays in the grid — on a plain plane it is the only way to reach it.
   const DEDICATED_PX4 = new Set(['hold', 'mission', 'return', 'land', 'takeoff']);
-  const DEDICATED_ARDU = new Set(['guided', 'rtl', 'land', 'takeoff']);
+  const DEDICATED_ARDU = new Set(['guided', 'rtl', 'land']);
   const quickModes = $derived(safeModes.filter((m) => !(sys === 'px4' ? DEDICATED_PX4 : DEDICATED_ARDU).has(m.key)));
 
   let showAllModes = $state(false);
