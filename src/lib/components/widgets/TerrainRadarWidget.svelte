@@ -395,7 +395,7 @@
     font-variant-numeric: tabular-nums;
   }
   .uav-ring {
-    fill: rgba(55, 168, 219, 0.25);
+    fill: rgba(255, 145, 27, 0.25);
     stroke: #ffffff;
     stroke-width: 2;
   }
@@ -411,9 +411,9 @@
     padding: 0.1em 0.55em; /* em: follows the inline font-size */
     font-weight: 700;
     letter-spacing: 0.05em;
-    color: #37a8db;
+    color: #ff911b;
     background: rgba(0, 0, 0, 0.4);
-    border: 1px solid rgba(55, 168, 219, 0.4);
+    border: 1px solid rgba(255, 145, 27, 0.4);
     border-radius: 6px;
     cursor: pointer;
   }
@@ -424,7 +424,7 @@
     right: 4px;
   }
   .mode:hover {
-    background: rgba(55, 168, 219, 0.18);
+    background: rgba(255, 145, 27, 0.18);
   }
   .placeholder {
     position: absolute;

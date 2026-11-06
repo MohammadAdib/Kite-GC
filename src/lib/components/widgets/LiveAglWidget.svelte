@@ -502,14 +502,14 @@
   }
   .hist-line {
     fill: none;
-    stroke: #37a8db;
+    stroke: #ff911b;
     stroke-width: 2;
     stroke-linejoin: round;
     stroke-linecap: round;
   }
   .fwd-line {
     fill: none;
-    stroke: #37a8db;
+    stroke: #ff911b;
     stroke-width: 2;
     stroke-dasharray: 6 4;
     stroke-linejoin: round;
@@ -522,7 +522,7 @@
     stroke-dasharray: 3 3;
   }
   .uav-ring {
-    fill: rgba(55, 168, 219, 0.25);
+    fill: rgba(255, 145, 27, 0.25);
     stroke: #ffffff;
     stroke-width: 2;
   }
@@ -553,7 +553,7 @@
   }
   .r-label {
     font-weight: 600;
-    color: #37a8db;
+    color: #ff911b;
     text-transform: uppercase;
     letter-spacing: 0.05em;
   }

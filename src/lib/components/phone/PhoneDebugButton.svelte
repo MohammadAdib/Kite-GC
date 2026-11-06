@@ -38,7 +38,7 @@
     pointer-events: auto;
   }
   .debug-btn.open {
-    border-color: #37a8db;
-    color: #37a8db;
+    border-color: #ff911b;
+    color: #ff911b;
   }
 </style>

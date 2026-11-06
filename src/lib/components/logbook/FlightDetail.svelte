@@ -793,7 +793,7 @@
 
   .craft-name-input {
     background: rgba(255, 255, 255, 0.06);
-    border: 1px solid rgba(55, 168, 219, 0.4);
+    border: 1px solid rgba(255, 145, 27, 0.4);
     border-radius: 4px;
     color: #ccc;
     font-size: 12px;
@@ -804,7 +804,7 @@
   }
 
   .craft-name-input:focus {
-    border-color: #37a8db;
+    border-color: #ff911b;
   }
 
   /* Craft-name combobox: filter input + dropdown of existing vehicle craft names. */
@@ -821,7 +821,7 @@
     padding: 5px 8px; border: none; border-radius: 3px; background: transparent;
     color: #e0e0e0; font-size: 12px; text-align: left; cursor: pointer;
   }
-  .craft-opt:hover { background: rgba(55, 168, 219, 0.18); }
+  .craft-opt:hover { background: rgba(255, 145, 27, 0.18); }
   .co-craft { font-weight: 600; }
   .co-meta { color: #949494; font-size: 11px; }
 
@@ -841,10 +841,10 @@
     color-scheme: dark;
   }
   .platform-select:hover {
-    border-color: rgba(55, 168, 219, 0.6);
+    border-color: rgba(255, 145, 27, 0.6);
   }
   .platform-select:focus {
-    border-color: #37a8db;
+    border-color: #ff911b;
   }
 
   .weather-edit-btn {
@@ -859,7 +859,7 @@
   }
 
   .weather-edit-btn:hover {
-    color: #37a8db;
+    color: #ff911b;
   }
 
   .flight-id-tag {
@@ -895,7 +895,7 @@
 
   .battery-missing {
     font-size: 10px;
-    color: #e0b050;
+    color: #e0be50;
     font-weight: 400;
   }
 

@@ -448,7 +448,7 @@
     background: rgba(46, 46, 46, 0.92);
     backdrop-filter: var(--panel-blur, blur(10px));
     -webkit-backdrop-filter: var(--panel-blur, blur(10px));
-    border: 1px solid rgba(55, 168, 219, 0.35);
+    border: 1px solid rgba(255, 145, 27, 0.35);
     border-radius: 8px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
     padding: 8px 14px 6px;
@@ -520,7 +520,7 @@
     background: rgba(46, 46, 46, 0.92);
     backdrop-filter: var(--panel-blur, blur(10px));
     -webkit-backdrop-filter: var(--panel-blur, blur(10px));
-    border: 1px solid rgba(55, 168, 219, 0.35);
+    border: 1px solid rgba(255, 145, 27, 0.35);
     border-top: none;
     border-radius: 0 0 8px 8px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
@@ -564,7 +564,7 @@
   }
   .lpc-fill {
     height: 100%;
-    background: #37a8db;
+    background: #ff911b;
     border-radius: 3px;
   }
 
@@ -600,9 +600,9 @@
   }
 
   .log-player-source-btn.active {
-    background: #37a8db;
-    color: #fff;
-    border-color: #339cc1;
+    background: #ff911b;
+    color: #522507;
+    border-color: #e47516;
   }
 
   /* Mission visibility toggle — set apart from the REC/BBX source group. */
@@ -635,7 +635,7 @@
     font-family: 'JetBrains Mono', 'Fira Code', monospace;
     font-size: 13px;
     font-weight: 600;
-    color: #37a8db;
+    color: #ff911b;
     flex-shrink: 0;
     letter-spacing: 0.02em;
     font-variant-numeric: tabular-nums;
@@ -697,28 +697,28 @@
   }
 
   .log-player-btn:hover {
-    background: rgba(55, 168, 219, 0.15);
-    border-color: #37a8db;
+    background: rgba(255, 145, 27, 0.15);
+    border-color: #ff911b;
   }
 
   .log-player-btn.play-btn {
     font-size: 14px;
     padding: 6px 2px;
     flex-grow: 1.4; /* the one button you aim for most */
-    background: #37a8db;
-    color: #fff;
-    border-color: #339cc1;
+    background: #ff911b;
+    color: #522507;
+    border-color: #e47516;
   }
 
   .log-player-btn.play-btn:hover {
-    background: #45bce5;
+    background: #ffa640;
   }
 
   .log-player-btn.speed-btn {
     font-weight: 700;
     min-width: 32px;
     text-align: center;
-    color: #37a8db;
+    color: #ff911b;
   }
 
   .log-player-scrubber {
@@ -742,7 +742,7 @@
     width: 14px;
     height: 14px;
     border-radius: 50%;
-    background: #37a8db;
+    background: #ff911b;
     border: 2px solid #e0e0e0;
     cursor: pointer;
   }
@@ -751,7 +751,7 @@
     width: 14px;
     height: 14px;
     border-radius: 50%;
-    background: #37a8db;
+    background: #ff911b;
     border: 2px solid #e0e0e0;
     cursor: pointer;
   }
@@ -776,7 +776,7 @@
   }
 
   .track-color-select select:hover {
-    border-color: #37a8db;
+    border-color: #ff911b;
   }
 
   .model-select {
@@ -796,7 +796,7 @@
   }
 
   .model-select select:hover {
-    border-color: #37a8db;
+    border-color: #ff911b;
   }
 
   .track-legend {

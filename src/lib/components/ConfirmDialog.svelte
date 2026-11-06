@@ -115,7 +115,7 @@
 
   .dialog-box {
     background: #2e2e2e;
-    border: 1px solid rgba(55, 168, 219, 0.45);
+    border: 1px solid rgba(255, 145, 27, 0.45);
     border-radius: 8px;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
     padding: 20px 24px 16px;
@@ -147,7 +147,7 @@
     margin: -6px 0 14px;
     cursor: pointer;
   }
-  .dialog-check input { accent-color: #37a8db; }
+  .dialog-check input { accent-color: #ff911b; }
 
   .dialog-buttons {
     display: flex;
@@ -187,12 +187,12 @@
   }
 
   .dialog-btn-primary {
-    background: #1a6b94;
-    border-color: #2590c8;
-    color: #fff;
+    background: #ff911b;
+    border-color: #ffb868;
+    color: #522507;
   }
 
   .dialog-btn-primary:hover {
-    background: #237fae;
+    background: #e47516;
   }
 </style>

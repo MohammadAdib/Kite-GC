@@ -334,7 +334,7 @@
     padding: 0 16px;
     height: 50px;
     background: #2e2e2e;
-    border-bottom: 3px solid #37a8db;
+    border-bottom: 3px solid #ff911b;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
     position: relative;
     z-index: 200;
@@ -390,7 +390,7 @@
     z-index: 1;
     padding: 7px 16px 8px 12px;
     background: #2e2e2e;
-    border-bottom: 3px solid #37a8db;
+    border-bottom: 3px solid #ff911b;
     border-left: 1px solid #272727;
     border-bottom-left-radius: 6px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.35);
@@ -479,7 +479,7 @@
     color: #cfcfcf;
   }
   .tb-collapsed-proto {
-    color: #37a8db;
+    color: #ff911b;
     font-weight: 600;
   }
   .tb-collapsed-arm {
@@ -584,8 +584,8 @@
   }
 
   .sensor.warning {
-    color: #f5a623;
-    text-shadow: 0 0 4px rgba(245, 166, 35, 0.3);
+    color: #f5c423;
+    text-shadow: 0 0 4px rgba(245, 196, 35, 0.3);
   }
 
   .sensor.error {
@@ -615,13 +615,13 @@
     transition: background-color 0.2s, color 0.2s, border-color 0.2s;
   }
   .relay-toggle:hover {
-    background: rgba(55, 168, 219, 0.18);
+    background: rgba(255, 145, 27, 0.18);
     color: #e0e0e0;
   }
   .relay-toggle.open {
-    background: rgba(55, 168, 219, 0.22);
-    border-color: #37a8db;
-    color: #37a8db;
+    background: rgba(255, 145, 27, 0.22);
+    border-color: #ff911b;
+    color: #ff911b;
   }
 
 </style>

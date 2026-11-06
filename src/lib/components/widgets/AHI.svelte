@@ -74,12 +74,12 @@
         <circle cx="100" cy="100" r="88" />
       </clipPath>
       <linearGradient id="ahi-sky" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0%" stop-color="#0a2e52" />
-        <stop offset="100%" stop-color="#2980b9" />
+        <stop offset="0%" stop-color="#4A90C9" />
+        <stop offset="100%" stop-color="#9DC4DB" />
       </linearGradient>
       <linearGradient id="ahi-gnd" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0%" stop-color="#8B6914" />
-        <stop offset="100%" stop-color="#3d2b1f" />
+        <stop offset="0%" stop-color="#8BA51E" />
+        <stop offset="100%" stop-color="#364205" />
       </linearGradient>
     </defs>
 

@@ -514,9 +514,9 @@
     height: 32px;
     padding: 6px;
     background: rgba(46, 46, 46, 0.82);
-    border: 1px solid rgba(55, 168, 219, 0.5);
+    border: 1px solid rgba(255, 145, 27, 0.5);
     border-radius: 6px;
-    color: #37a8db;
+    color: #ff911b;
     cursor: pointer;
     opacity: 0;
     transition: opacity 0.15s ease, background 0.2s;
@@ -527,7 +527,7 @@
     pointer-events: auto;
   }
   .dv-btn:hover {
-    background: rgba(55, 168, 219, 0.3);
+    background: rgba(255, 145, 27, 0.3);
   }
   .dv-btn svg {
     width: 100%;

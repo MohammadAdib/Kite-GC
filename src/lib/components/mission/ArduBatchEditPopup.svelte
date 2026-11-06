@@ -253,7 +253,7 @@
     padding: 8px;
     background: rgba(30, 30, 30, 0.82);
     backdrop-filter: var(--panel-blur, blur(10px));
-    border: 1px solid rgba(55, 168, 219, 0.35);
+    border: 1px solid rgba(255, 145, 27, 0.35);
     border-radius: 8px;
     box-shadow: 0 6px 24px rgba(0, 0, 0, 0.5);
     color: #e0e0e0;
@@ -273,7 +273,7 @@
   .bp-title {
     flex: 1;
     font-weight: 600;
-    color: #37a8db;
+    color: #ff911b;
     text-transform: uppercase;
     letter-spacing: 0.04em;
     font-size: 11px;
@@ -306,8 +306,8 @@
     flex-shrink: 0;
     min-width: 46px;
     background: #333;
-    color: #cfe8f5;
-    border: 1px solid rgba(55, 168, 219, 0.4);
+    color: #fee3c6;
+    border: 1px solid rgba(255, 145, 27, 0.4);
     border-radius: 4px;
     padding: 4px 6px;
     font-size: 11px;
@@ -337,16 +337,16 @@
     border-top: 1px solid #444;
   }
   .bp-apply {
-    background: rgba(55, 168, 219, 0.18);
-    color: #cfe8f5;
-    border: 1px solid rgba(55, 168, 219, 0.5);
+    background: rgba(255, 145, 27, 0.18);
+    color: #fee3c6;
+    border: 1px solid rgba(255, 145, 27, 0.5);
     border-radius: 5px;
     padding: 5px 14px;
     font-weight: 600;
     cursor: pointer;
   }
   .bp-apply:hover {
-    background: rgba(55, 168, 219, 0.3);
+    background: rgba(255, 145, 27, 0.3);
   }
   .bp-apply:disabled {
     opacity: 0.5;

@@ -626,7 +626,7 @@
     width: 24px; height: 24px; line-height: 1; font-size: 16px;
     border: 1px solid #444; border-radius: 4px; background: #2a2a2a; color: #cfcfcf; cursor: pointer;
   }
-  .rc-expand:hover { border-color: #37a8db; color: #37a8db; }
+  .rc-expand:hover { border-color: #ff911b; color: #ff911b; }
 
   .rc-toolbar { display: flex; align-items: center; gap: 8px; }
   .rc-dev-label { color: #949494; font-size: 11px; }
@@ -660,16 +660,16 @@
     flex-wrap: wrap;
   }
   .rc-banner-warn {
-    background: rgba(232, 163, 23, 0.14); border: 1px solid rgba(232, 163, 23, 0.45); color: #f0b443;
+    background: rgba(232, 183, 23, 0.14); border: 1px solid rgba(232, 183, 23, 0.45); color: #f0c843;
   }
   .rc-banner-info {
-    background: rgba(55, 168, 219, 0.12); border: 1px solid rgba(55, 168, 219, 0.35); color: #9fd4ec;
+    background: rgba(255, 145, 27, 0.12); border: 1px solid rgba(255, 145, 27, 0.35); color: #fdc78e;
   }
   .rc-fix-btn {
     margin-top: 6px; padding: 4px 10px; font-size: 11px; font-weight: 600; border-radius: 4px; cursor: pointer;
-    background: rgba(232, 163, 23, 0.2); color: #f0b443; border: 1px solid rgba(232, 163, 23, 0.5);
+    background: rgba(232, 183, 23, 0.2); color: #f0c843; border: 1px solid rgba(232, 183, 23, 0.5);
   }
-  .rc-fix-btn:hover:not(:disabled) { background: rgba(232, 163, 23, 0.32); }
+  .rc-fix-btn:hover:not(:disabled) { background: rgba(232, 183, 23, 0.32); }
   .rc-fix-btn:disabled { opacity: 0.5; cursor: not-allowed; }
 
   /* Engage gate — the button itself is a HoldToConfirm (fills left→right on long-press). */
@@ -677,7 +677,7 @@
   .rc-engage-hold { font-size: 10px; font-weight: 400; opacity: 0.7; }
   .rc-engage-status {
     padding: 7px 10px; font-size: 11px; border-radius: 5px; line-height: 1.4;
-    background: rgba(55, 168, 219, 0.1); border: 1px solid rgba(55, 168, 219, 0.3); color: #9fd4ec;
+    background: rgba(255, 145, 27, 0.1); border: 1px solid rgba(255, 145, 27, 0.3); color: #fdc78e;
   }
   .rc-engage-status.on {
     background: rgba(89, 170, 41, 0.2); border-color: #59aa29; color: #7ec850; font-weight: 700;
@@ -696,13 +696,13 @@
     padding: 7px 10px; background: none; border: none; cursor: pointer;
     color: #cfcfcf; font-size: 12px; font-weight: 600;
   }
-  .rc-collapse-head:hover { color: #37a8db; }
+  .rc-collapse-head:hover { color: #ff911b; }
   .rc-chevron { display: inline-block; transition: transform 0.15s; color: #949494; }
   .rc-chevron.open { transform: rotate(90deg); }
   .rc-collapse-body { padding: 4px 10px 10px; }
 
   .rc-section-title {
-    color: #37a8db; font-size: 11px; text-transform: uppercase; letter-spacing: 0.4px;
+    color: #ff911b; font-size: 11px; text-transform: uppercase; letter-spacing: 0.4px;
     margin: 10px 2px 6px; font-weight: 700;
   }
 
@@ -715,12 +715,12 @@
     border: 1px solid #3a3a3a; border-radius: 3px; overflow: hidden;
   }
   .rc-bar-centre { position: absolute; left: 50%; top: 0; bottom: 0; width: 1px; background: #555; }
-  .rc-bar-fill { position: absolute; top: 0; bottom: 0; background: #37a8db; }
+  .rc-bar-fill { position: absolute; top: 0; bottom: 0; background: #ff911b; }
 
   .rc-hats { display: flex; flex-wrap: wrap; gap: 8px; }
   .rc-hat { position: relative; width: 30px; height: 30px; border-radius: 50%; background: #232323; border: 1px solid #3a3a3a; }
   .rc-hat-dot {
-    position: absolute; width: 7px; height: 7px; border-radius: 50%; background: #37a8db;
+    position: absolute; width: 7px; height: 7px; border-radius: 50%; background: #ff911b;
     transform: translate(-50%, -50%); transition: left 0.05s linear, top 0.05s linear;
   }
 
@@ -750,7 +750,7 @@
     display: flex; align-items: center; justify-content: center;
   }
   .rc-modal {
-    background: #2e2e2e; border: 1px solid rgba(55, 168, 219, 0.45); border-radius: 8px;
+    background: #2e2e2e; border: 1px solid rgba(255, 145, 27, 0.45); border-radius: 8px;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5); padding: 20px 24px 16px; min-width: 340px;
   }
   .rc-modal-title { font-size: 14px; font-weight: 700; color: #e0e0e0; margin-bottom: 12px; }
@@ -759,16 +759,16 @@
     width: 100%; box-sizing: border-box; padding: 7px 9px; font-size: 13px;
     background: #232323; color: #e0e0e0; border: 1px solid #444; border-radius: 4px;
   }
-  .rc-modal-input:focus { outline: none; border-color: #37a8db; }
-  .rc-modal-warn { color: #d98a2b; font-size: 11px; margin-top: 6px; }
+  .rc-modal-input:focus { outline: none; border-color: #ff911b; }
+  .rc-modal-warn { color: #d9b02b; font-size: 11px; margin-top: 6px; }
   .rc-modal-buttons { display: flex; justify-content: flex-end; gap: 8px; margin-top: 16px; }
   .rc-modal-btn {
     padding: 6px 14px; font-size: 12px; font-weight: 600; border-radius: 4px;
     border: 1px solid #555; background: #434343; color: #e0e0e0; cursor: pointer;
   }
   .rc-modal-btn.cancel { color: #999; }
-  .rc-modal-btn.primary { background: #1a6b94; border-color: #2590c8; color: #fff; }
+  .rc-modal-btn.primary { background: #ff911b; border-color: #ffb868; color: #522507; }
   .rc-modal-btn.primary:disabled { opacity: 0.45; cursor: not-allowed; }
   .rc-modal-btn:hover:not(:disabled) { background: #505050; }
-  .rc-modal-btn.primary:hover:not(:disabled) { background: #237fae; }
+  .rc-modal-btn.primary:hover:not(:disabled) { background: #e47516; }
 </style>

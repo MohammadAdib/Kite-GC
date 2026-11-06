@@ -714,7 +714,7 @@
   }
 
   .logbook-tree-toggle:hover {
-    border-color: #37a8db;
+    border-color: #ff911b;
   }
 
   .logbook-tree-toggle-top {
@@ -741,7 +741,7 @@
   }
 
   .logbook-tree-caret {
-    color: #9cc6d9;
+    color: #e7bc8e;
     font-size: 11px;
     line-height: 1;
   }
@@ -761,9 +761,9 @@
 
   .logbook-tree-count {
     font-size: 10px;
-    color: #8fb4c5;
-    background: rgba(55, 168, 219, 0.12);
-    border: 1px solid rgba(55, 168, 219, 0.32);
+    color: #d1ab83;
+    background: rgba(255, 145, 27, 0.12);
+    border: 1px solid rgba(255, 145, 27, 0.32);
     border-radius: 999px;
     padding: 1px 6px;
   }
@@ -781,18 +781,18 @@
   }
 
   .logbook-item:hover {
-    border-color: #37a8db;
+    border-color: #ff911b;
   }
 
   .logbook-item.selected {
-    border-color: #37a8db;
-    background: rgba(55, 168, 219, 0.18);
+    border-color: #ff911b;
+    background: rgba(255, 145, 27, 0.18);
   }
 
   .logbook-item.multi-selected {
-    border-color: #37a8db;
-    background: rgba(55, 168, 219, 0.12);
-    outline: 1px solid rgba(55, 168, 219, 0.4);
+    border-color: #ff911b;
+    background: rgba(255, 145, 27, 0.12);
+    outline: 1px solid rgba(255, 145, 27, 0.4);
     outline-offset: -1px;
   }
 
@@ -826,9 +826,9 @@
   }
 
   .logbook-progress {
-    border: 1px solid rgba(55, 168, 219, 0.35);
+    border: 1px solid rgba(255, 145, 27, 0.35);
     border-radius: 6px;
-    background: rgba(55, 168, 219, 0.08);
+    background: rgba(255, 145, 27, 0.08);
     padding: 8px;
     margin-bottom: 10px;
   }
@@ -850,7 +850,7 @@
 
   .logbook-progress-fill {
     height: 100%;
-    background: linear-gradient(90deg, #2d8ab8, #37a8db);
+    background: linear-gradient(90deg, #c36516, #ff911b);
     transition: width 0.2s ease;
   }
 

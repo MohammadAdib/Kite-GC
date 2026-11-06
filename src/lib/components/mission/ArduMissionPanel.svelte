@@ -545,7 +545,7 @@
     font-size: 12px;
     cursor: pointer;
   }
-  .ap-vehicle-select:disabled { opacity: 0.55; cursor: not-allowed; color: #f39c12; }
+  .ap-vehicle-select:disabled { opacity: 0.55; cursor: not-allowed; color: #f3bf12; }
 
   .miss-dropzone { position: relative; min-height: 100%; }
 
@@ -555,7 +555,7 @@
   .wp-table th { background: #1e1e1e; color: #888; font-weight: 600; font-size: 11px; text-transform: uppercase; padding: 4px 5px; text-align: left; border-bottom: 1px solid #444; }
   .wp-row { cursor: pointer; border-bottom: 1px solid #2a2a2a; color: #ccc; }
   .wp-row:hover { background: #2a2a2a; }
-  .wp-row.selected { background: #1a3a5c; color: #fff; }
+  .wp-row.selected { background: #6b3d0b; color: #fff; }
   .wp-row td { padding: 4px 5px; white-space: nowrap; }
   .col-num { width: 30px; text-align: center; }
   .col-type { width: 40px; }
@@ -571,21 +571,21 @@
   /* No internal scroll: the PanelShell footer is pinned and the column scrolls as a last resort, so a
      full WP's params show without a spurious inner scrollbar (the detail is bounded — a handful of rows). */
   .wp-detail { padding: 6px 8px; border: 1px solid #333; border-radius: 4px; background: #1e1e1e; }
-  .detail-header { font-weight: bold; font-size: 13px; color: #37a8db; margin-bottom: 4px; padding-bottom: 3px; border-bottom: 1px solid #333; }
+  .detail-header { font-weight: bold; font-size: 13px; color: #ff911b; margin-bottom: 4px; padding-bottom: 3px; border-bottom: 1px solid #333; }
   .detail-row { display: flex; justify-content: space-between; padding: 1px 0; font-size: 12px; }
   .detail-label { color: #888; font-size: 11px; }
   .detail-value { color: #ccc; font-size: 12px; }
-  .detail-hint { color: #37a8db; font-size: 11px; text-align: center; margin-top: 4px; font-style: italic; }
+  .detail-hint { color: #ff911b; font-size: 11px; text-align: center; margin-top: 4px; font-style: italic; }
   .ctrl-row { display: flex; gap: 4px; }
-  .mission-status { padding: 3px 6px; font-size: 11px; color: #f39c12; text-align: center; }
-  .mission-warn { padding: 3px 6px; font-size: 11px; color: #f39c12; text-align: center; }
-  .mission-stats { display: flex; align-items: center; justify-content: center; gap: 12px; padding: 4px 3px 0; font-size: 12px; color: #9ad0e8; flex-wrap: wrap; font-variant-numeric: tabular-nums; }
+  .mission-status { padding: 3px 6px; font-size: 11px; color: #f3bf12; text-align: center; }
+  .mission-warn { padding: 3px 6px; font-size: 11px; color: #f3bf12; text-align: center; }
+  .mission-stats { display: flex; align-items: center; justify-content: center; gap: 12px; padding: 4px 3px 0; font-size: 12px; color: #fac388; flex-wrap: wrap; font-variant-numeric: tabular-nums; }
   .mission-stats .stat { white-space: nowrap; cursor: default; }
   .mission-summary { display: flex; align-items: center; justify-content: center; gap: 4px; padding: 3px; font-size: 12px; color: #888; flex-wrap: wrap; }
-  .dirty-badge { background: #f39c12; color: #1a1a1a; padding: 1px 6px; border-radius: 8px; font-size: 11px; font-weight: bold; }
+  .dirty-badge { background: #f3bf12; color: #1a1a1a; padding: 1px 6px; border-radius: 8px; font-size: 11px; font-weight: bold; }
   .prov-badge { color: #fff; padding: 1px 6px; border-radius: 8px; font-size: 11px; font-weight: bold; }
-  .prov-fc { background: #37a8db; }
+  .prov-fc { background: #ff911b; }
   .prov-file { background: #6c7a89; }
   .prov-db { background: #59aa29; }
-  .wp-warn { color: #f39c12; margin-left: 3px; cursor: help; }
+  .wp-warn { color: #f3bf12; margin-left: 3px; cursor: help; }
 </style>

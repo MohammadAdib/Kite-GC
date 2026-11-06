@@ -68,7 +68,7 @@
 
 <style>
   .dialog-backdrop { position: fixed; inset: 0; z-index: 9999; background: rgba(0, 0, 0, 0.55); display: flex; align-items: center; justify-content: center; }
-  .dialog-box { background: #2e2e2e; border: 1px solid rgba(55, 168, 219, 0.45); border-radius: 8px; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5); padding: 20px 24px 16px; min-width: 380px; max-width: 520px; }
+  .dialog-box { background: #2e2e2e; border: 1px solid rgba(255, 145, 27, 0.45); border-radius: 8px; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5); padding: 20px 24px 16px; min-width: 380px; max-width: 520px; }
   .dialog-title { font-size: 14px; font-weight: 700; color: #e0e0e0; margin-bottom: 10px; }
   .da-note { font-size: 12px; color: #949494; margin-bottom: 14px; }
 
@@ -82,8 +82,8 @@
   .da-spacer { flex: 1 1 auto; }
   .dialog-btn { padding: 6px 14px; font-size: 12px; font-weight: 600; border-radius: 4px; border: 1px solid #555; background: #434343; color: #e0e0e0; cursor: pointer; transition: background 0.15s; }
   .dialog-btn:hover { background: #505050; }
-  .dialog-btn-primary { background: #1a6b94; border-color: #2590c8; color: #fff; }
-  .dialog-btn-primary:hover { background: #237fae; }
+  .dialog-btn-primary { background: #ff911b; border-color: #ffb868; color: #522507; }
+  .dialog-btn-primary:hover { background: #e47516; }
   .dialog-btn-danger { background: #5a1414; border-color: #d40000; color: #f3c5c5; }
   .dialog-btn-danger:hover { background: #7a1a1a; }
 </style>

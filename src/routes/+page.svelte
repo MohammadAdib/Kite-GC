@@ -4056,9 +4056,9 @@
     padding: 8px 16px;
     font-size: 12px;
     font-weight: 600;
-    color: #cfe8f5;
-    background: rgba(26, 107, 148, 0.92);
-    border: 1px solid #2590c8;
+    color: #fee3c6;
+    background: rgba(131, 69, 20, 0.92);
+    border: 1px solid #e47516;
     border-radius: 6px;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.45);
     pointer-events: none;
@@ -4474,7 +4474,7 @@
   }
   .map-video-wrap.unobstructed .map-video-box {
     background: #000;
-    border: 1px solid rgba(55, 168, 219, 0.35);
+    border: 1px solid rgba(255, 145, 27, 0.35);
     box-sizing: border-box;
     /* Drop shadow — near-black right at the frame, fading out wide and soft: lifts the
        framed video clearly off the blurred backdrop map. */

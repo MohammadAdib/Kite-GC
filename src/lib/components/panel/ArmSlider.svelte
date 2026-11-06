@@ -91,13 +91,13 @@
     width: 100%;
     height: 34px;
     border-radius: 18px;
-    border: 1px solid var(--as-border, #37a8db);
-    background: var(--as-bg, rgba(55, 168, 219, 0.1));
+    border: 1px solid var(--as-border, #ff911b);
+    background: var(--as-bg, rgba(255, 145, 27, 0.1));
     overflow: hidden;
     user-select: none;
     touch-action: none;
   }
-  .arm-slider.standard { --as-border: #37a8db; --as-bg: rgba(55, 168, 219, 0.1);  --as-knob: #37a8db; --as-fg: #cfe8f4; }
+  .arm-slider.standard { --as-border: #ff911b; --as-bg: rgba(255, 145, 27, 0.1);  --as-knob: #ff911b; --as-fg: #fce2c7; }
   .arm-slider.warning  { --as-border: #d4a017; --as-bg: rgba(212, 160, 23, 0.1);  --as-knob: #d4a017; --as-fg: #f0dca6; }
   .arm-slider.danger   { --as-border: #d40000; --as-bg: rgba(212, 0, 0, 0.12);    --as-knob: #d40000; --as-fg: #f3b5b5; }
 
@@ -114,7 +114,7 @@
     font-size: 11.5px;
     font-weight: 600;
     letter-spacing: 0.3px;
-    color: var(--as-fg, #cfe8f4);
+    color: var(--as-fg, #fce2c7);
     pointer-events: none;
     transition: opacity 0.05s linear;
   }
@@ -127,8 +127,8 @@
     height: 30px;
     border-radius: 50%;
     border: none;
-    background: var(--as-knob, #37a8db);
-    color: #11181d;
+    background: var(--as-knob, #ff911b);
+    color: #20170e;
     cursor: grab;
     display: flex;
     align-items: center;

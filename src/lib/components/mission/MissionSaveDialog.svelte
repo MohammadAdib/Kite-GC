@@ -69,7 +69,7 @@
   }
   .dialog-box {
     background: #2e2e2e;
-    border: 1px solid rgba(55, 168, 219, 0.45);
+    border: 1px solid rgba(255, 145, 27, 0.45);
     border-radius: 8px;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
     padding: 20px 24px 16px;
@@ -103,7 +103,7 @@
     border-radius: 4px;
     font-family: 'Segoe UI', Tahoma, sans-serif;
   }
-  .fld-input:focus { outline: none; border-color: #37a8db; }
+  .fld-input:focus { outline: none; border-color: #ff911b; }
   .fld-area { resize: vertical; }
   .dialog-buttons {
     display: flex;
@@ -125,9 +125,9 @@
   .dialog-btn:hover { background: #505050; }
   .dialog-btn-cancel { color: #999; }
   .dialog-btn-primary {
-    background: #1a6b94;
-    border-color: #2590c8;
-    color: #fff;
+    background: #ff911b;
+    border-color: #ffb868;
+    color: #522507;
   }
-  .dialog-btn-primary:hover { background: #237fae; }
+  .dialog-btn-primary:hover { background: #e47516; }
 </style>

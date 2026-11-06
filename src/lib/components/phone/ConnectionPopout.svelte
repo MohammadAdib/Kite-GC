@@ -143,7 +143,7 @@
     height: 42px;
     padding: 9px;
     background: rgba(46, 46, 46, 0.92);
-    border: 1px solid rgba(55, 168, 219, 0.5);
+    border: 1px solid rgba(255, 145, 27, 0.5);
     border-radius: 6px;
     color: #cfcfcf;
     cursor: pointer;
@@ -161,9 +161,9 @@
     stroke-linejoin: round;
   }
   .cp-btn.open {
-    background: rgba(55, 168, 219, 0.22);
-    border-color: #37a8db;
-    color: #37a8db;
+    background: rgba(255, 145, 27, 0.22);
+    border-color: #ff911b;
+    color: #ff911b;
   }
   .cp-dot {
     position: absolute;
@@ -187,7 +187,7 @@
     max-width: min(560px, calc(100vw - var(--phone-panel-w, 0px) + var(--phone-shift, 0px) - 24px));
     background: rgba(46, 46, 46, 0.97);
     border: 1px solid #272727;
-    border-top: 2px solid #37a8db;
+    border-top: 2px solid #ff911b;
     border-radius: 8px;
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.45);
     z-index: 300;
@@ -215,9 +215,9 @@
     flex-shrink: 0;
   }
   .relay-toggle.open {
-    background: rgba(55, 168, 219, 0.22);
-    border-color: #37a8db;
-    color: #37a8db;
+    background: rgba(255, 145, 27, 0.22);
+    border-color: #ff911b;
+    color: #ff911b;
   }
 
   .cp-relay {

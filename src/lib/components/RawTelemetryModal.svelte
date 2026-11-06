@@ -182,7 +182,7 @@
     width: min(1100px, 95vw);
     max-height: 88vh;
     background: #2e2e2e;
-    border: 1px solid rgba(55, 168, 219, 0.45);
+    border: 1px solid rgba(255, 145, 27, 0.45);
     border-radius: 8px;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
     color: #e0e0e0;
@@ -201,7 +201,7 @@
   .dialog-title {
     font-size: 15px;
     font-weight: 600;
-    color: #37a8db;
+    color: #ff911b;
   }
 
   .hint {

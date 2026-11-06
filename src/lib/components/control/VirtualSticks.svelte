@@ -135,7 +135,7 @@
     position: fixed; left: 0; right: 0; bottom: 0; height: 46vh; z-index: 400;
     display: flex; flex-direction: column; gap: 12px; padding: 12px; box-sizing: border-box;
     background: linear-gradient(#0a0a0acc, #0a0a0aee); backdrop-filter: var(--glass-blur, blur(2px));
-    border-top: 2px solid #37a8db;
+    border-top: 2px solid #ff911b;
   }
   .vs-bar { display: flex; align-items: center; gap: 12px; }
   .engage, .arm {
@@ -151,7 +151,7 @@
   .vs-pads.disabled { opacity: 0.35; pointer-events: none; }
   .pad {
     position: relative; flex: 1; border-radius: 16px; background: #1b1b1b;
-    border: 2px solid #37a8db55; touch-action: none; overflow: hidden;
+    border: 2px solid #ff911b55; touch-action: none; overflow: hidden;
   }
   .cross {
     position: absolute; inset: 0;
@@ -161,7 +161,7 @@
   }
   .knob {
     position: absolute; width: 64px; height: 64px; margin: -32px 0 0 -32px; border-radius: 50%;
-    background: radial-gradient(circle at 35% 35%, #7cc7ec, #2b7fa8); border: 2px solid #cfe;
+    background: radial-gradient(circle at 35% 35%, #ffb868, #c36516); border: 2px solid #ffe0c0;
     box-shadow: 0 2px 8px #000a; pointer-events: none;
   }
   .lbl { position: absolute; font: 11px/1 system-ui; color: #ffffff66; }

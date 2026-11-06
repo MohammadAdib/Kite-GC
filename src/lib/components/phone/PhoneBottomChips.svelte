@@ -101,7 +101,7 @@
     color: #1a1a1a;
   }
   .sensor.warning {
-    background: #f5a623;
+    background: #f5c423;
   }
   .sensor.error {
     background: #d40000;

@@ -75,7 +75,7 @@
   .w-label {
     font-size: calc(var(--ws) * 0.13);
     font-weight: 600;
-    color: #37a8db;
+    color: #ff911b;
     text-transform: uppercase;
     letter-spacing: 0.05em;
   }

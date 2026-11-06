@@ -311,9 +311,9 @@
     transition: background-color 0.2s, color 0.2s, border-color 0.2s;
   }
   .bt-edit:hover {
-    background: rgba(55, 168, 219, 0.18);
-    color: #37a8db;
-    border-color: #37a8db;
+    background: rgba(255, 145, 27, 0.18);
+    color: #ff911b;
+    border-color: #ff911b;
   }
 
   /* Drop the native number spinner — the up/down arrows are clutter in the toolbar. */

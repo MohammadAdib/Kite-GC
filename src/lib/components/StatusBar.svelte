@@ -104,8 +104,8 @@
   }
 
   .status-indicator.reconnecting {
-    background: #f39c12;
-    box-shadow: 0 0 4px rgba(243, 156, 18, 0.6);
+    background: #f3bf12;
+    box-shadow: 0 0 4px rgba(243, 191, 18, 0.6);
     animation: reconnect-pulse 1s ease-in-out infinite;
   }
   @keyframes reconnect-pulse {
@@ -163,13 +163,13 @@
   }
 
   .debug-btn:hover {
-    color: #f5a623;
-    border-color: rgba(245, 166, 35, 0.3);
+    color: #f5c423;
+    border-color: rgba(245, 196, 35, 0.3);
   }
 
   .debug-btn.open {
-    color: #f5a623;
-    border-color: rgba(245, 166, 35, 0.4);
-    background: rgba(245, 166, 35, 0.1);
+    color: #f5c423;
+    border-color: rgba(245, 196, 35, 0.4);
+    background: rgba(245, 196, 35, 0.1);
   }
 </style>

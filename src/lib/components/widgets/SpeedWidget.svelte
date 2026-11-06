@@ -159,7 +159,7 @@
   .w-label {
     font-size: calc(var(--ws) * 0.13);
     font-weight: 600;
-    color: #37a8db;
+    color: #ff911b;
     text-transform: uppercase;
     letter-spacing: 0.05em;
   }
@@ -209,7 +209,7 @@
   }
   .vbar-fill.thr {
     bottom: 0;
-    background: #37a8db;
+    background: #ff911b;
     transition: height 0.2s ease;
   }
   /* 25/50/75 % reference ticks on the throttle bar — thicker and overhanging both sides for clarity. */
@@ -244,5 +244,5 @@
     transition: none;
   }
   .vbar-fill.acc.pos { background: #59aa29; } /* accelerating */
-  .vbar-fill.acc.neg { background: #f5a623; } /* decelerating */
+  .vbar-fill.acc.neg { background: #f5c423; } /* decelerating */
 </style>

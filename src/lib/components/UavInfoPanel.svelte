@@ -249,7 +249,7 @@
     margin: 0 0 8px 0;
     font-size: 11px;
     font-weight: 600;
-    color: #37a8db;
+    color: #ff911b;
     text-transform: uppercase;
     letter-spacing: 0.5px;
   }
@@ -308,10 +308,10 @@
     color-scheme: dark;
   }
   .type-select:hover {
-    border-color: rgba(55, 168, 219, 0.6);
+    border-color: rgba(255, 145, 27, 0.6);
   }
   .type-select:focus {
-    border-color: #37a8db;
+    border-color: #ff911b;
   }
   .type-select:disabled {
     opacity: 0.6;
@@ -326,17 +326,17 @@
   .lib-btn {
     width: 100%;
     padding: 5px 10px;
-    background: rgba(55, 168, 219, 0.12);
-    border: 1px solid rgba(55, 168, 219, 0.5);
+    background: rgba(255, 145, 27, 0.12);
+    border: 1px solid rgba(255, 145, 27, 0.5);
     border-radius: 4px;
-    color: #37a8db;
+    color: #ff911b;
     font-size: 11px;
     font-weight: 600;
     font-family: inherit;
     cursor: pointer;
   }
   .lib-btn:hover:not(:disabled) {
-    background: rgba(55, 168, 219, 0.22);
+    background: rgba(255, 145, 27, 0.22);
   }
   .lib-btn:disabled {
     opacity: 0.6;

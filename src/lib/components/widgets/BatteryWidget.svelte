@@ -184,7 +184,7 @@
     gap: calc(var(--ws) * 0.03);
     font-size: calc(var(--ws) * 0.13);
     font-weight: 600;
-    color: #37a8db;
+    color: #ff911b;
     text-transform: uppercase;
     letter-spacing: 0.05em;
     background: none;
@@ -193,12 +193,12 @@
     font-family: inherit;
   }
   .w-label.clickable { cursor: pointer; }
-  .w-label.clickable:hover { color: #5bc0ef; }
+  .w-label.clickable:hover { color: #ffa84b; }
   .chip {
     font-size: calc(var(--ws) * 0.09);
     font-weight: 700;
     color: #e0e0e0;
-    background: rgba(55, 168, 219, 0.25);
+    background: rgba(255, 145, 27, 0.25);
     border-radius: calc(var(--ws) * 0.03);
     padding: 0 calc(var(--ws) * 0.04);
     letter-spacing: 0;

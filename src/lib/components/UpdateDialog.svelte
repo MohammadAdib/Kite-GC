@@ -122,7 +122,7 @@
 
   .dialog-box {
     background: #2e2e2e;
-    border: 1px solid rgba(55, 168, 219, 0.45);
+    border: 1px solid rgba(255, 145, 27, 0.45);
     border-radius: 8px;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
     padding: 20px 24px 16px;
@@ -155,7 +155,7 @@
   }
   .upd-k { color: #949494; }
   .upd-v { color: #e0e0e0; font-weight: 600; }
-  .upd-pre { color: #f5a623; font-size: 11px; }
+  .upd-pre { color: #f5c423; font-size: 11px; }
 
   /* ── Release notes ─────────────────────────────────────────────────────── */
   .upd-notes-head {
@@ -196,7 +196,7 @@
   .upd-notes :global(p) { margin: 0 0 8px; }
   .upd-notes :global(ul), .upd-notes :global(ol) { margin: 0 0 8px; padding-left: 20px; }
   .upd-notes :global(li) { margin: 2px 0; }
-  .upd-notes :global(a) { color: #37a8db; text-decoration: none; }
+  .upd-notes :global(a) { color: #ff911b; text-decoration: none; }
   .upd-notes :global(a:hover) { text-decoration: underline; }
   .upd-notes :global(code) {
     font-family: Consolas, 'Courier New', monospace;
@@ -226,10 +226,10 @@
   }
   .upd-notes :global(blockquote p:last-child) { margin-bottom: 0; }
   /* GitHub alert blockquotes (> [!IMPORTANT] …) — colour by kind, GitHub's palette on our dark ground. */
-  .upd-notes :global(blockquote.alert-note) { border-left-color: #37a8db; }
+  .upd-notes :global(blockquote.alert-note) { border-left-color: #ff911b; }
   .upd-notes :global(blockquote.alert-tip) { border-left-color: #59aa29; }
   .upd-notes :global(blockquote.alert-important) { border-left-color: #a371f7; }
-  .upd-notes :global(blockquote.alert-warning) { border-left-color: #f5a623; }
+  .upd-notes :global(blockquote.alert-warning) { border-left-color: #f5c423; }
   .upd-notes :global(blockquote.alert-caution) { border-left-color: #d40000; }
 
   /* ── Install progress / outcome ────────────────────────────────────────── */
@@ -249,7 +249,7 @@
   }
   .upd-bar-fill {
     height: 100%;
-    background: #37a8db;
+    background: #ff911b;
     border-radius: 3px;
     transition: width 0.15s linear;
   }
@@ -299,9 +299,9 @@
   .dialog-btn-cancel { color: #999; }
 
   .dialog-btn-primary {
-    background: #1a6b94;
-    border-color: #2590c8;
-    color: #fff;
+    background: #ff911b;
+    border-color: #ffb868;
+    color: #522507;
   }
-  .dialog-btn-primary:hover { background: #237fae; }
+  .dialog-btn-primary:hover { background: #e47516; }
 </style>

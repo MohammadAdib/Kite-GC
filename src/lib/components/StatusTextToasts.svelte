@@ -107,8 +107,8 @@
   /* Repeat tally for a message the FC keeps re-sending. Dimmed so it reads as metadata, not content. */
   .m-count { flex: 0 0 auto; margin-left: auto; padding-left: 8px; font-size: 11px; opacity: 0.55; font-variant-numeric: tabular-nums; }
 
-  .msg-line.info    { color: #cfe7f3; }
-  .msg-line.info .m-icon { color: #37a8db; }
+  .msg-line.info    { color: #fbe2c7; }
+  .msg-line.info .m-icon { color: #ff911b; }
   .msg-line.debug   { color: #b4b4b4; }
   .msg-line.debug .m-icon { color: #949494; }
   .msg-line.warning { color: #f6e3b0; }

@@ -68,8 +68,8 @@
     flex-shrink: 0;
   }
   .uid-copy:hover {
-    color: #37a8db;
-    border-color: rgba(55, 168, 219, 0.4);
+    color: #ff911b;
+    border-color: rgba(255, 145, 27, 0.4);
   }
   .uid-copy.copied {
     color: #59aa29;

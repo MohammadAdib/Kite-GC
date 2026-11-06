@@ -62,7 +62,7 @@
          so rotation stays clean and the rotated corners never exceed the box. -->
     <svg viewBox="0 0 60 60" class="home-arrow">
       <g transform="rotate({relativeAngle}, 30, 30)">
-        <polygon points="30,4 14,52 30,42 46,52" fill="#37a8db" />
+        <polygon points="30,4 14,52 30,42 46,52" fill="#ff911b" />
       </g>
     </svg>
     <span class="w-dist">{distanceText()}</span>
@@ -91,7 +91,7 @@
   .w-label {
     font-size: calc(var(--ws) * 0.13);
     font-weight: 600;
-    color: #37a8db;
+    color: #ff911b;
     text-transform: uppercase;
     letter-spacing: 0.05em;
   }

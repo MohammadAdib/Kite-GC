@@ -77,7 +77,7 @@
   .w-label {
     font-size: calc(var(--ws) * 0.13);
     font-weight: 600;
-    color: #37a8db;
+    color: #ff911b;
     text-transform: uppercase;
     letter-spacing: 0.05em;
   }
@@ -110,7 +110,7 @@
     margin-bottom: calc(var(--ws) * 0.02);
     font-size: calc(var(--ws) * 0.15);
     font-weight: 700;
-    color: #37a8db;
+    color: #ff911b;
     letter-spacing: 0.04em;
     font-variant-numeric: tabular-nums;
     white-space: nowrap;

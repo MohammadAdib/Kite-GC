@@ -95,7 +95,7 @@
 
   .dialog-box {
     background: #2e2e2e;
-    border: 1px solid rgba(55, 168, 219, 0.45);
+    border: 1px solid rgba(255, 145, 27, 0.45);
     border-radius: 8px;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
     padding: 16px 18px 12px;
@@ -155,8 +155,8 @@
     cursor: pointer;
   }
   .log-row:last-child { border-bottom: none; }
-  .log-row:hover { background: rgba(55, 168, 219, 0.12); }
-  .log-row:active { background: rgba(55, 168, 219, 0.24); }
+  .log-row:hover { background: rgba(255, 145, 27, 0.12); }
+  .log-row:active { background: rgba(255, 145, 27, 0.24); }
 
   .log-date {
     font-variant-numeric: tabular-nums;
@@ -167,8 +167,8 @@
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.4px;
-    color: #37a8db;
-    border: 1px solid rgba(55, 168, 219, 0.55);
+    color: #ff911b;
+    border: 1px solid rgba(255, 145, 27, 0.55);
     border-radius: 3px;
     padding: 1px 5px;
   }

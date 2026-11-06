@@ -87,11 +87,11 @@
   }
 
   .toggle-switch input:checked + .toggle-slider {
-    background-color: rgba(55, 168, 219, 0.3);
-    border-color: #37a8db;
+    background-color: rgba(255, 145, 27, 0.3);
+    border-color: #ff911b;
   }
   .toggle-switch input:checked + .toggle-slider::before {
     transform: translateX(16px);
-    background-color: #37a8db;
+    background-color: #ff911b;
   }
 </style>

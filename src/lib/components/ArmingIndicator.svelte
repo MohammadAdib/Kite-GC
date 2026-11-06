@@ -85,11 +85,11 @@
   .arming.ready .dot { background: #59aa29; box-shadow: 0 0 4px rgba(89, 170, 41, 0.6); }
 
   .arming.armed {
-    color: #f0b443;
-    background: rgba(232, 163, 23, 0.14);
-    border-color: rgba(232, 163, 23, 0.45);
+    color: #f0c843;
+    background: rgba(232, 183, 23, 0.14);
+    border-color: rgba(232, 183, 23, 0.45);
   }
-  .arming.armed .dot { background: #e8a317; box-shadow: 0 0 5px rgba(232, 163, 23, 0.7); }
+  .arming.armed .dot { background: #e8b717; box-shadow: 0 0 5px rgba(232, 183, 23, 0.7); }
 
   .arming.notready {
     color: #ff6b6b;

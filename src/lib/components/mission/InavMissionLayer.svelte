@@ -906,20 +906,20 @@
   /* The map (and thus this Leaflet popup) is unzoomed, so scale the editor box to match
      the global UI scale. Origin bottom-centre keeps the popup anchored over the WP (tip
      stays put, box grows upward). --ui-scale is inherited from .ui-root. */
-  :global(.wp-editor-popup-container .leaflet-popup-content-wrapper) { background: rgba(30,30,30,0.82); backdrop-filter: var(--glass-blur, blur(6px)); color: #ccc; border: 1px solid rgba(55,168,219,0.35); border-radius: 8px; box-shadow: 0 6px 24px rgba(0,0,0,0.5); padding: 0; transform: scale(var(--ui-scale, 1)); transform-origin: bottom center; }
+  :global(.wp-editor-popup-container .leaflet-popup-content-wrapper) { background: rgba(30,30,30,0.82); backdrop-filter: var(--glass-blur, blur(6px)); color: #ccc; border: 1px solid rgba(255,145,27,0.35); border-radius: 8px; box-shadow: 0 6px 24px rgba(0,0,0,0.5); padding: 0; transform: scale(var(--ui-scale, 1)); transform-origin: bottom center; }
   :global(.wp-editor-popup-container .leaflet-popup-content) { margin: 0; width: auto !important; }
-  :global(.wp-editor-popup-container .leaflet-popup-tip) { background: rgba(30,30,30,0.82); backdrop-filter: var(--glass-blur, blur(6px)); border: 1px solid rgba(55,168,219,0.35); }
+  :global(.wp-editor-popup-container .leaflet-popup-tip) { background: rgba(30,30,30,0.82); backdrop-filter: var(--glass-blur, blur(6px)); border: 1px solid rgba(255,145,27,0.35); }
   :global(.wp-editor-popup) { padding: 10px; font-size: 13px; min-width: 190px; }
-  :global(.wpe-header) { display: flex; align-items: center; gap: 6px; font-weight: bold; font-size: 14px; color: #37a8db; margin-bottom: 6px; border-bottom: 1px solid #444; padding-bottom: 4px; }
+  :global(.wpe-header) { display: flex; align-items: center; gap: 6px; font-weight: bold; font-size: 14px; color: #ff911b; margin-bottom: 6px; border-bottom: 1px solid #444; padding-bottom: 4px; }
   :global(.wpe-num) { flex-shrink: 0; }
   :global(.wpe-cmd-select) { flex: 1; background: #1e1e1e; color: #ccc; border: 1px solid #555; border-radius: 3px; padding: 2px 4px; font-size: 12px; font-weight: normal; cursor: pointer; color-scheme: dark; }
-  :global(.wpe-cmd-select:focus) { border-color: #37a8db; outline: none; }
+  :global(.wpe-cmd-select:focus) { border-color: #ff911b; outline: none; }
   :global(.wpe-type-name) { color: #888; font-weight: normal; font-size: 12px; margin-left: 4px; }
   :global(.wpe-row) { display: flex; align-items: center; gap: 6px; margin-bottom: 5px; }
   :global(.wpe-row label) { width: 52px; color: #888; font-size: 12px; flex-shrink: 0; }
   :global(.wpe-row input:not(.ns-input)) { background: #2a2a2a; color: #ccc; border: 1px solid #555; border-radius: 0; padding: 3px 4px; font-size: 13px; width: 52px; text-align: center; appearance: textfield; -moz-appearance: textfield; }
   :global(.wpe-row input:not(.ns-input)::-webkit-inner-spin-button), :global(.wpe-row input:not(.ns-input)::-webkit-outer-spin-button) { -webkit-appearance: none; margin: 0; }
-  :global(.wpe-row input:not(.ns-input):focus) { border-color: #37a8db; outline: none; }
+  :global(.wpe-row input:not(.ns-input):focus) { border-color: #ff911b; outline: none; }
   :global(.wpe-coord-input) { width: 110px !important; text-align: right !important; }
   :global(.wpe-row select) { background: #2a2a2a; color: #ccc; border: 1px solid #555; border-radius: 3px; padding: 3px 4px; font-size: 13px; flex: 1; }
   :global(.wpe-toggle) { background: #2a2a2a; color: #ccc; border: 1px solid #555; border-radius: 3px; padding: 3px 8px; font-size: 12px; cursor: pointer; }
@@ -927,7 +927,7 @@
   :global(.wpe-unit) { color: #888; font-size: 12px; white-space: nowrap; }
   :global(.wpe-ua-row) { gap: 4px; }
   :global(.wpe-ua-btn) { padding: 2px 5px; border: 1px solid #555; border-radius: 3px; background: #2a2a2a; color: #777; cursor: pointer; font-size: 10px; font-weight: 600; transition: all 0.15s; }
-  :global(.wpe-ua-btn.active) { background: #37a8db; color: #fff; border-color: #37a8db; }
+  :global(.wpe-ua-btn.active) { background: #ff911b; color: #522507; border-color: #ff911b; }
   :global(.wpe-ua-btn:hover:not(.active)) { background: #3a3a3a; color: #ccc; }
   :global(.wpe-mod-section) { margin-top: 6px; padding-top: 5px; border-top: 1px dashed #555; }
   :global(.wpe-mod-header) { display: flex; align-items: center; justify-content: space-between; font-size: 12px; font-weight: 600; color: #e67e22; margin-bottom: 4px; }

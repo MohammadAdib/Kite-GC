@@ -193,12 +193,12 @@
   }
 
   .ns-btn:hover {
-    background: #37a8db;
-    color: #fff;
+    background: #ff911b;
+    color: #522507;
   }
 
   .ns-btn:active {
-    background: #2d8ab8;
+    background: #c36516;
   }
 
   .ns-btn:disabled {
@@ -222,7 +222,7 @@
   }
 
   .ns-stepper:focus-within {
-    border-color: #37a8db;
+    border-color: #ff911b;
   }
 
   .ns-input {

@@ -201,8 +201,8 @@
 <style>
   .mc { display: flex; flex-direction: column; gap: 6px; }
   .mc-group {
-    color: #37a8db; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;
-    margin: 8px 0 2px; padding-bottom: 3px; border-bottom: 1px solid rgba(55, 168, 219, 0.25);
+    color: #ff911b; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;
+    margin: 8px 0 2px; padding-bottom: 3px; border-bottom: 1px solid rgba(255, 145, 27, 0.25);
   }
   .mc-group:first-child { margin-top: 0; }
   .mc-hint { color: #949494; font-size: 11px; font-style: italic; }
@@ -216,12 +216,12 @@
     flex: none; padding: 4px 10px; font-size: 11px; border-radius: 4px; cursor: pointer;
     background: #2a2a2a; color: #cfcfcf; border: 1px solid #444; white-space: nowrap;
   }
-  .mc-learn:hover { border-color: #37a8db; color: #37a8db; }
-  .mc-learn.armed { background: rgba(55, 168, 219, 0.2); color: #37a8db; border-color: #37a8db; }
+  .mc-learn:hover { border-color: #ff911b; color: #ff911b; }
+  .mc-learn.armed { background: rgba(255, 145, 27, 0.2); color: #ff911b; border-color: #ff911b; }
   .mc-inv {
     flex: none; display: flex; align-items: center; gap: 4px; color: #949494; font-size: 10px; white-space: nowrap;
   }
-  .mc-inv input { accent-color: #37a8db; }
+  .mc-inv input { accent-color: #ff911b; }
   .mc-btnlbl { flex: none; color: #949494; font-size: 10px; }
   .mc-del {
     flex: none; width: 24px; height: 24px; font-size: 11px; line-height: 1; border-radius: 4px; cursor: pointer;
@@ -232,5 +232,5 @@
     align-self: flex-start; padding: 4px 10px; font-size: 11px; border-radius: 4px; cursor: pointer;
     background: #2a2a2a; color: #cfcfcf; border: 1px solid #444;
   }
-  .mc-add:hover { border-color: #37a8db; color: #37a8db; }
+  .mc-add:hover { border-color: #ff911b; color: #ff911b; }
 </style>

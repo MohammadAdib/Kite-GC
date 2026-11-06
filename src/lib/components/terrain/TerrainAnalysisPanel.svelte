@@ -1007,7 +1007,7 @@
     line-height: 1.4;
   }
   .rf-warn {
-    color: #f5a623;
+    color: #f5c423;
   }
 
   /* Terrain Correction sub-panel */
@@ -1047,7 +1047,7 @@
   .corr-warn {
     margin: 0;
     font-size: 11px;
-    color: #e0a030;
+    color: #e0b730;
     line-height: 1.35;
   }
   .addwp-row {
@@ -1056,9 +1056,9 @@
     gap: 4px;
   }
   .addwp-btn {
-    background: rgba(55, 168, 219, 0.15);
-    border: 1px solid rgba(55, 168, 219, 0.5);
-    color: #37a8db;
+    background: rgba(255, 145, 27, 0.15);
+    border: 1px solid rgba(255, 145, 27, 0.5);
+    color: #ff911b;
     border-radius: 6px;
     padding: 6px 10px;
     font-size: 12px;
@@ -1066,7 +1066,7 @@
     transition: background-color 0.15s;
   }
   .addwp-btn:hover:not(:disabled) {
-    background: rgba(55, 168, 219, 0.28);
+    background: rgba(255, 145, 27, 0.28);
   }
   .addwp-btn:disabled {
     opacity: 0.4;
@@ -1111,7 +1111,7 @@
     font-size: 13px;
   }
   .state.warn {
-    color: #e0a030;
+    color: #e0b730;
   }
 
   /* Footer slot content (PanelShell .ps-fs-foot provides the top border). */
@@ -1139,6 +1139,6 @@
     font-weight: 600;
   }
   .readout.cursor .rv {
-    color: #9fd4ec;
+    color: #fdc78e;
   }
 </style>

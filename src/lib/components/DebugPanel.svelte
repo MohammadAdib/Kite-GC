@@ -1267,7 +1267,7 @@
     padding-bottom: 8px; margin-bottom: 8px; border-bottom: 1px solid #272727;
   }
   .perf-fps { font-size: 13px; color: #949494; }
-  .perf-fps b { color: #37a8db; font-size: 16px; font-variant-numeric: tabular-nums; }
+  .perf-fps b { color: #ff911b; font-size: 16px; font-variant-numeric: tabular-nums; }
   .perf-refresh {
     margin-left: auto; padding: 3px 10px; font-size: 11px;
     background: #434343; color: #e0e0e0; border: 1px solid #555; border-radius: 4px; cursor: pointer;
@@ -1275,7 +1275,7 @@
   .perf-refresh:hover { background: #4f4f4f; }
   .perf-section {
     margin: 12px 0 4px; font-size: 11px; font-weight: 700; text-transform: uppercase;
-    letter-spacing: 0.5px; color: #37a8db;
+    letter-spacing: 0.5px; color: #ff911b;
   }
   .perf-row { display: flex; align-items: center; justify-content: space-between; padding: 3px 0; }
   .perf-row span { color: #c0c0c0; }
@@ -1284,8 +1284,8 @@
     background: #434343; border: 1px solid #555; border-radius: 4px; color: #e0e0e0; font-size: 12px;
   }
   .perf-check { display: flex; align-items: center; gap: 7px; padding: 3px 0; color: #c0c0c0; cursor: pointer; }
-  .perf-clock { margin-left: auto; color: #37a8db; font-variant-numeric: tabular-nums; }
-  .perf-slider { width: 100%; accent-color: #37a8db; cursor: pointer; }
+  .perf-clock { margin-left: auto; color: #ff911b; font-variant-numeric: tabular-nums; }
+  .perf-slider { width: 100%; accent-color: #ff911b; cursor: pointer; }
   .perf-slider:disabled { cursor: default; opacity: 0.45; }
   .perf-empty { padding: 20px 4px; color: #949494; font-style: italic; }
   .perf-hint { margin-top: 12px; padding-top: 8px; border-top: 1px solid #272727; color: #777; font-size: 11px; line-height: 1.4; }
@@ -1304,7 +1304,7 @@
     width: 540px;
     max-height: calc(100vh - 53px - 24px - 30px);
     background: rgba(30, 30, 30, 0.95);
-    border: 1px solid rgba(55, 168, 219, 0.4);
+    border: 1px solid rgba(255, 145, 27, 0.4);
     border-radius: 8px;
     z-index: 150;
     display: flex;
@@ -1326,14 +1326,14 @@
     justify-content: space-between;
     align-items: center;
     padding: 8px 12px;
-    background: rgba(55, 168, 219, 0.1);
-    border-bottom: 1px solid rgba(55, 168, 219, 0.2);
+    background: rgba(255, 145, 27, 0.1);
+    border-bottom: 1px solid rgba(255, 145, 27, 0.2);
   }
 
   .debug-title {
     font-size: 12px;
     font-weight: 600;
-    color: #37a8db;
+    color: #ff911b;
   }
 
   .debug-close {
@@ -1375,8 +1375,8 @@
   }
 
   .tab.active {
-    color: #37a8db;
-    border-bottom-color: #37a8db;
+    color: #ff911b;
+    border-bottom-color: #ff911b;
   }
 
   .inject-row {
@@ -1389,7 +1389,7 @@
   }
 
   .inject-row.on {
-    background: rgba(245, 166, 35, 0.08);
+    background: rgba(245, 196, 35, 0.08);
   }
 
   .inj-toggle {
@@ -1406,11 +1406,11 @@
   }
 
   .inject-row.on .inj-toggle {
-    color: #f5a623;
+    color: #f5c423;
   }
 
   .inj-toggle input {
-    accent-color: #f5a623;
+    accent-color: #f5c423;
     cursor: pointer;
   }
 
@@ -1435,14 +1435,14 @@
 
   .inj-num:focus {
     outline: none;
-    border-color: #37a8db;
+    border-color: #ff911b;
   }
 
   .inj-btn {
-    background: rgba(55, 168, 219, 0.15);
-    border: 1px solid rgba(55, 168, 219, 0.3);
+    background: rgba(255, 145, 27, 0.15);
+    border: 1px solid rgba(255, 145, 27, 0.3);
     border-radius: 3px;
-    color: #37a8db;
+    color: #ff911b;
     cursor: pointer;
     font-size: 12px;
     line-height: 1;
@@ -1450,20 +1450,20 @@
   }
 
   .inj-btn:hover {
-    background: rgba(55, 168, 219, 0.3);
+    background: rgba(255, 145, 27, 0.3);
   }
 
   .dbg-btn {
-    background: rgba(55, 168, 219, 0.15);
-    border: 1px solid rgba(55, 168, 219, 0.3);
+    background: rgba(255, 145, 27, 0.15);
+    border: 1px solid rgba(255, 145, 27, 0.3);
     border-radius: 3px;
-    color: #37a8db;
+    color: #ff911b;
     cursor: pointer;
     font-size: 12px;
     padding: 4px 10px;
   }
   .dbg-btn:hover {
-    background: rgba(55, 168, 219, 0.3);
+    background: rgba(255, 145, 27, 0.3);
   }
 
   .debug-stats {
@@ -1508,7 +1508,7 @@
   }
 
   .stat-warn {
-    color: #f5a623;
+    color: #f5c423;
     font-size: 11px;
   }
 
@@ -1573,7 +1573,7 @@
   }
 
   .debug-table tr:hover {
-    background: rgba(55, 168, 219, 0.05);
+    background: rgba(255, 145, 27, 0.05);
   }
 
   .debug-table tr.inactive td {
@@ -1643,7 +1643,7 @@
   }
 
   .closing {
-    color: #f5a623 !important;
+    color: #f5c423 !important;
     font-weight: 700;
   }
 
@@ -1654,7 +1654,7 @@
   }
 
   .throttled {
-    color: #f5a623 !important;
+    color: #f5c423 !important;
     font-weight: 700;
   }
 
@@ -1675,8 +1675,8 @@
   }
 
   .dot.on {
-    background: #37a8db;
-    box-shadow: 0 0 4px #37a8db;
+    background: #ff911b;
+    box-shadow: 0 0 4px #ff911b;
   }
 
   .status-badge {
@@ -1715,7 +1715,7 @@
   }
 
   .cap-path {
-    color: #37a8db;
+    color: #ff911b;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -1740,7 +1740,7 @@
   .hex-bytes {
     font-size: 10px;
     line-height: 1.5;
-    color: #b8d8e8;
+    color: #f3d1ad;
     word-break: break-all;
     background: rgba(0, 0, 0, 0.3);
     border: 1px solid rgba(255, 255, 255, 0.08);
@@ -1757,7 +1757,7 @@
   .gatt-svc {
     font-size: 10px;
     font-weight: 700;
-    color: #37a8db;
+    color: #ff911b;
     margin: 6px 0 2px;
     font-variant-numeric: tabular-nums;
   }
@@ -1791,7 +1791,7 @@
   }
 
   .gatt-act {
-    color: #f5a623;
+    color: #f5c423;
     font-variant-numeric: tabular-nums;
   }
 
@@ -1827,7 +1827,7 @@
 
   .tun-input:focus {
     outline: none;
-    border-color: #37a8db;
+    border-color: #ff911b;
   }
 
   .dbg-btn:disabled {

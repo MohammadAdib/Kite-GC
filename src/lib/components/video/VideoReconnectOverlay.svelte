@@ -40,7 +40,7 @@
     gap: 10px;
     padding: 7px 12px;
     background: rgba(20, 20, 20, 0.82);
-    border: 1px solid rgba(245, 166, 35, 0.7);
+    border: 1px solid rgba(245, 196, 35, 0.7);
     border-radius: 8px;
     pointer-events: auto;
     max-width: 90%;
@@ -49,8 +49,8 @@
     flex: 0 0 auto;
     width: 14px;
     height: 14px;
-    border: 2px solid rgba(245, 166, 35, 0.35);
-    border-top-color: #f5a623;
+    border: 2px solid rgba(245, 196, 35, 0.35);
+    border-top-color: #f5c423;
     border-radius: 50%;
     animation: rc-spin 0.8s linear infinite;
   }
@@ -65,7 +65,7 @@
     opacity: 1;
   }
   .rc-text {
-    color: #f5a623;
+    color: #f5c423;
     font-size: 13px;
     font-weight: 600;
     white-space: nowrap;

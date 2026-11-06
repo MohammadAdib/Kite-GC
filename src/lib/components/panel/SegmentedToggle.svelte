@@ -103,8 +103,8 @@
     position: absolute;
     top: 2px;
     bottom: 2px;
-    background: rgba(55, 168, 219, 0.22);
-    border: 1px solid #37a8db;
+    background: rgba(255, 145, 27, 0.22);
+    border: 1px solid #ff911b;
     border-radius: 4px;
     transition: left 0.2s ease, width 0.2s ease;
     pointer-events: none;
@@ -130,7 +130,7 @@
     transition: color 0.15s;
   }
   .seg-btn:hover:not(.active):not(:disabled) { color: #e0e0e0; }
-  .seg-btn.active { color: #37a8db; }
+  .seg-btn.active { color: #ff911b; }
   /* Per-option disabled: dim just this segment (whole-control disabled is handled below). */
   .seg-btn:disabled { color: #5a5a5a; cursor: not-allowed; }
   /* Read-only: dim the whole control and show a not-allowed cursor; the active segment stays marked. */

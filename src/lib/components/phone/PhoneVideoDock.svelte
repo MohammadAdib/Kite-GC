@@ -198,9 +198,9 @@
     height: 38px;
     padding: 7px;
     background: rgba(46, 46, 46, 0.9);
-    border: 2px solid rgba(55, 168, 219, 0.5);
+    border: 2px solid rgba(255, 145, 27, 0.5);
     border-radius: 6px;
-    color: #37a8db;
+    color: #ff911b;
     cursor: pointer;
     backdrop-filter: var(--glass-blur, blur(6px));
     -webkit-backdrop-filter: var(--glass-blur, blur(6px));
@@ -209,7 +209,7 @@
   }
   .dock-btn.open {
     background: var(--btn-active-bg);
-    border-color: #37a8db;
+    border-color: #ff911b;
   }
   /* Video primary: the 2D/3D + follow buttons are hidden (mini map), the map toggle takes their
      corner. */
@@ -242,7 +242,7 @@
     z-index: 60;
     pointer-events: none;
     background: rgba(46, 46, 46, 0.92);
-    border: 1px solid rgba(55, 168, 219, 0.35);
+    border: 1px solid rgba(255, 145, 27, 0.35);
     border-radius: 8px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
   }

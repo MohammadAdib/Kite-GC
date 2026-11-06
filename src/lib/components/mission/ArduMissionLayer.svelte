@@ -656,9 +656,9 @@
   :global(.wpe-applies) { color: #888; font-size: 10px; font-weight: 400; margin-left: 4px; }
   :global(.wpe-canonical) { color: #7a7a7a; font-size: 10px; font-weight: 400; font-family: 'Consolas', monospace; }
   :global(.wpe-canonical-line) { margin: 1px 0 4px; padding-left: 2px; }
-  :global(.wpe-info) { color: #37a8db; font-size: 10px; cursor: help; opacity: 0.8; }
-  :global(.wpe-adv-toggle) { display: block; width: 100%; text-align: left; background: none; border: none; border-top: 1px dashed #555; margin-top: 4px; padding: 4px 0 2px; color: #37a8db; font-size: 11px; cursor: pointer; }
-  :global(.wpe-adv-toggle:hover) { color: #5cc0ec; }
+  :global(.wpe-info) { color: #ff911b; font-size: 10px; cursor: help; opacity: 0.8; }
+  :global(.wpe-adv-toggle) { display: block; width: 100%; text-align: left; background: none; border: none; border-top: 1px dashed #555; margin-top: 4px; padding: 4px 0 2px; color: #ff911b; font-size: 11px; cursor: pointer; }
+  :global(.wpe-adv-toggle:hover) { color: #ffa749; }
   :global(.wpe-adv-body) { margin-top: 2px; }
   /* Jump repeat-count badge (↺N) pinned near the source waypoint — purple to match the jump line. */
   :global(.mission-jump-badge) {

@@ -56,7 +56,7 @@
 
   .dialog-box {
     background: #2e2e2e;
-    border: 1px solid rgba(55, 168, 219, 0.45);
+    border: 1px solid rgba(255, 145, 27, 0.45);
     border-radius: 8px;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
     padding: 20px 24px 16px;
@@ -87,7 +87,7 @@
 
   .hires-progress-fill {
     height: 100%;
-    background: #37a8db;
+    background: #ff911b;
     border-radius: 4px;
     transition: width 0.2s ease;
   }

@@ -124,7 +124,7 @@
     color: #e0e0e0;
     font-size: 13px;
     background: rgba(46, 46, 46, 0.92);
-    border: 1px solid rgba(55, 168, 219, 0.35);
+    border: 1px solid rgba(255, 145, 27, 0.35);
     border-radius: 8px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
     backdrop-filter: var(--panel-blur, blur(10px));
@@ -245,7 +245,7 @@
     z-index: 160;
     flex-direction: column;
     border-radius: 10px;
-    border: 1px solid rgba(55, 168, 219, 0.4);
+    border: 1px solid rgba(255, 145, 27, 0.4);
     background: rgba(40, 40, 40, 0.96);
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.55);
     backdrop-filter: var(--panel-blur, blur(10px));
@@ -318,7 +318,7 @@
     flex: 1;
     font-weight: 600;
     font-size: 13px;
-    color: #37a8db;
+    color: #ff911b;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;

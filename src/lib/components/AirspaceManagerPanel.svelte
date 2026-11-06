@@ -875,7 +875,7 @@
   /* "Show on Map" group — the layer-visibility toggles + render ranges, pinned to the end. */
   .am-showmap { margin-top: 10px; padding-top: 8px; border-top: 1px solid #272727; }
   .am-showmap-head {
-    font-size: 11px; font-weight: 700; color: #37a8db; text-transform: uppercase; letter-spacing: 0.5px;
+    font-size: 11px; font-weight: 700; color: #ff911b; text-transform: uppercase; letter-spacing: 0.5px;
     padding: 0 2px 4px;
   }
   .am-ranges {
@@ -896,7 +896,7 @@
 
   .am-list { display: flex; flex-direction: column; }
   .am-group-head {
-    font-size: 11px; font-weight: 700; color: #37a8db; text-transform: uppercase; letter-spacing: 0.5px;
+    font-size: 11px; font-weight: 700; color: #ff911b; text-transform: uppercase; letter-spacing: 0.5px;
     padding: 8px 4px 3px; position: sticky; top: 0; background: #2e2e2e; z-index: 1;
   }
   .am-group-count { color: #949494; font-weight: 600; }
@@ -914,15 +914,15 @@
     cursor: pointer;
     color: inherit;
   }
-  .am-item:hover { background: rgba(55, 168, 219, 0.08); }
+  .am-item:hover { background: rgba(255, 145, 27, 0.08); }
   .am-item-name { grid-area: name; font-size: 12px; color: #e0e0e0; }
   .am-item-sub { grid-area: sub; font-size: 10.5px; color: #949494; }
-  .am-item-dist { grid-area: dist; align-self: center; font-size: 11px; color: #37a8db; white-space: nowrap; }
+  .am-item-dist { grid-area: dist; align-self: center; font-size: 11px; color: #ff911b; white-space: nowrap; }
 
   /* Geozones section (FC config) — collapsible zone rows, colour-coded by type. */
   .gz-section { margin-top: 10px; padding-top: 8px; border-top: 1px solid #272727; display: flex; flex-direction: column; gap: 3px; }
   .gz-head { display: flex; align-items: center; justify-content: space-between; padding: 0 2px 4px; }
-  .gz-title { font-size: 11px; font-weight: 700; color: #37a8db; text-transform: uppercase; letter-spacing: 0.5px; }
+  .gz-title { font-size: 11px; font-weight: 700; color: #ff911b; text-transform: uppercase; letter-spacing: 0.5px; }
   .gz-count { font-size: 11px; color: #949494; font-weight: 600; }
   .gz-empty { font-size: 12px; color: #949494; padding: 2px 4px 4px; }
   .gz-row { border-left: 3px solid var(--gz-color); background: #272727; border-radius: 3px; overflow: hidden; }
@@ -930,17 +930,17 @@
     display: grid; grid-template-columns: auto auto 1fr auto; align-items: center; gap: 8px;
     width: 100%; text-align: left; background: none; border: none; padding: 5px 8px; cursor: pointer; color: inherit;
   }
-  .gz-rowhead:hover { background: rgba(55, 168, 219, 0.08); }
+  .gz-rowhead:hover { background: rgba(255, 145, 27, 0.08); }
   .gz-dot { width: 9px; height: 9px; border-radius: 50%; background: var(--gz-color); }
   .gz-name { font-size: 12px; font-weight: 700; color: #e0e0e0; }
   .gz-shape { font-size: 11px; color: #b8b8b8; }
   .gz-sub { font-size: 10.5px; color: #949494; text-align: right; }
   .gz-detail { display: flex; flex-direction: column; gap: 2px; padding: 4px 10px 8px; border-top: 1px solid #1f1f1f; }
   .gz-focus {
-    align-self: flex-start; background: none; border: 1px solid #37a8db; color: #37a8db;
+    align-self: flex-start; background: none; border: 1px solid #ff911b; color: #ff911b;
     border-radius: 4px; padding: 2px 8px; font-size: 11px; cursor: pointer;
   }
-  .gz-focus:hover { background: rgba(55, 168, 219, 0.12); }
+  .gz-focus:hover { background: rgba(255, 145, 27, 0.12); }
 
   /* Editing toolbar + per-zone edit controls (P2). */
   .gz-toolbar { display: flex; align-items: center; gap: 6px; padding: 2px 2px 6px; }
@@ -948,7 +948,7 @@
     background: #1f1f1f; color: #e0e0e0; border: 1px solid #272727; border-radius: 4px;
     padding: 3px 8px; font-size: 11px; cursor: pointer;
   }
-  .gz-add:hover:not(:disabled) { background: rgba(55, 168, 219, 0.12); border-color: #37a8db; }
+  .gz-add:hover:not(:disabled) { background: rgba(255, 145, 27, 0.12); border-color: #ff911b; }
   .gz-add:disabled { opacity: 0.4; cursor: not-allowed; }
   .gz-spacer { flex: 1; }
   .gz-editlock { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; color: #949494; }
@@ -966,7 +966,7 @@
   .gz-delete:hover { background: rgba(212, 0, 0, 0.12); }
 
   .gz-armed {
-    font-size: 11.5px; color: #1a1a1a; background: #f5a623; font-weight: 600;
+    font-size: 11.5px; color: #1a1a1a; background: #f5c423; font-weight: 600;
     border-radius: 4px; padding: 4px 8px; margin: 2px 2px 4px;
   }
   /* Global fence params (raw FC param names + numeric inputs). */
@@ -974,7 +974,7 @@
   .gz-params-head { font-size: 11px; font-weight: 700; color: #949494; text-transform: uppercase; letter-spacing: 0.5px; padding: 0 2px 2px; }
 
   .gz-issues { display: flex; flex-direction: column; gap: 2px; margin-top: 6px; }
-  .gz-issue { font-size: 11px; color: #f5a623; }
+  .gz-issue { font-size: 11px; color: #f5c423; }
   .gz-issue.gz-err { color: #ff5a5a; }
   .gz-save { display: flex; gap: 8px; margin-top: 8px; }
 </style>

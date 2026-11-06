@@ -451,7 +451,7 @@
     pointer-events: none;
   }
   .pwp.editing .glass {
-    border-left-color: rgba(55, 168, 219, 0.6);
+    border-left-color: rgba(255, 145, 27, 0.6);
   }
 
   /* Vertical page scroller with snap — one page = the usable height. While a widget is dragged
@@ -510,7 +510,7 @@
   .edit-frame {
     position: absolute;
     inset: 2px;
-    border: 1px dashed rgba(55, 168, 219, 0.7);
+    border: 1px dashed rgba(255, 145, 27, 0.7);
     pointer-events: none;
   }
   .resize-btn {
@@ -524,10 +524,10 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid rgba(55, 168, 219, 0.6);
+    border: 1px solid rgba(255, 145, 27, 0.6);
     border-radius: 6px;
     background: rgba(30, 30, 30, 0.85);
-    color: #37a8db;
+    color: #ff911b;
     cursor: pointer;
     touch-action: manipulation;
   }
@@ -557,6 +557,6 @@
     background: rgba(255, 255, 255, 0.25);
   }
   .dot.on {
-    background: #37a8db;
+    background: #ff911b;
   }
 </style>

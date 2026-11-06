@@ -55,8 +55,8 @@
            relative to the nose. Speed is read out as a number below the heading. -->
       {#if windShown}
         <g transform="rotate({windDownwind}, 100, 100)" opacity="0.45">
-          <line x1="100" y1="58" x2="100" y2="30" stroke="#7fd4ff" stroke-width="6" stroke-linecap="round" />
-          <polygon points="100,16 90,34 110,34" fill="#7fd4ff" />
+          <line x1="100" y1="58" x2="100" y2="30" stroke="#ffc17f" stroke-width="6" stroke-linecap="round" />
+          <polygon points="100,16 90,34 110,34" fill="#ffc17f" />
         </g>
       {/if}
       {#each ticks as t}
@@ -110,7 +110,7 @@
     <!-- Wind speed readout (blue, matches the wind arrow) — below the heading. -->
     {#if windShown}
       <text x="100" y="128" text-anchor="middle" dominant-baseline="middle"
-            fill="#7fd4ff" font-size="15" font-weight="600" font-family="sans-serif"
+            fill="#ffc17f" font-size="15" font-weight="600" font-family="sans-serif"
             style="font-variant-numeric: tabular-nums">{windSpeedConv.value.toFixed(speedDigits(interfaceSettings.speedUnit))} {windSpeedConv.unit}</text>
     {/if}
 

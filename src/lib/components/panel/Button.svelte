@@ -122,36 +122,36 @@
     color: #ccc;
   }
   .kbtn-standard:hover:not(:disabled) {
-    background: rgba(55, 168, 219, 0.18);
-    border-color: rgba(55, 168, 219, 0.5);
+    background: rgba(255, 145, 27, 0.18);
+    border-color: rgba(255, 145, 27, 0.5);
     color: #e0e0e0;
   }
 
   /* ── Mode switch (toggles a view; `active` = current) ───── */
   .kbtn-mode {
     background: transparent;
-    border-color: rgba(55, 168, 219, 0.4);
-    color: #9fd4ee;
+    border-color: rgba(255, 145, 27, 0.4);
+    color: #ffc88e;
   }
   .kbtn-mode:hover:not(:disabled) {
-    background: rgba(55, 168, 219, 0.12);
+    background: rgba(255, 145, 27, 0.12);
     color: #fff;
   }
   .kbtn-mode.active {
-    background: rgba(55, 168, 219, 0.22);
-    border-color: #37a8db;
-    color: #37a8db;
+    background: rgba(255, 145, 27, 0.22);
+    border-color: #ff911b;
+    color: #ff911b;
   }
 
   /* ── Data transfer (FC up/download, EEPROM, import/export) ─ */
   .kbtn-data {
-    background: #1a3a5c;
-    border-color: #37a8db;
-    color: #37a8db;
+    background: #6b3d0b;
+    border-color: #ff911b;
+    color: #ff911b;
   }
   .kbtn-data:hover:not(:disabled) {
-    background: #224b73;
-    color: #5bbce9;
+    background: #854c10;
+    color: #ffa545;
   }
 
   /* ── Danger (destructive) ───────────────────────────────── */
@@ -169,13 +169,13 @@
   /* ── Warning (cautionary) ───────────────────────────────── */
   .kbtn-warning {
     background: #2a2a2a;
-    border-color: #b9791b;
-    color: #f39c12;
+    border-color: #b9941b;
+    color: #f3bf12;
   }
   .kbtn-warning:hover:not(:disabled) {
-    background: rgba(243, 156, 18, 0.16);
-    border-color: #f39c12;
-    color: #ffb340;
+    background: rgba(243, 191, 18, 0.16);
+    border-color: #f3bf12;
+    color: #ffd240;
   }
 
   /* ── Compact (slim inline / auto-generated link chips) ──── */
@@ -184,16 +184,16 @@
     padding: 0 8px;
     font-size: 11px;
     font-weight: 600;
-    background: rgba(55, 168, 219, 0.12);
-    border-color: rgba(55, 168, 219, 0.35);
-    color: #9fd4ee;
+    background: rgba(255, 145, 27, 0.12);
+    border-color: rgba(255, 145, 27, 0.35);
+    color: #ffc88e;
     max-width: 100%;
     overflow: hidden;
     text-overflow: ellipsis;
   }
   .kbtn-compact:hover:not(:disabled) {
-    background: rgba(55, 168, 219, 0.25);
-    border-color: #37a8db;
+    background: rgba(255, 145, 27, 0.25);
+    border-color: #ff911b;
     color: #fff;
   }
 
