@@ -8,7 +8,7 @@
 
 import { invoke } from '@tauri-apps/api/core';
 import { writable, derived, get, type Readable } from 'svelte/store';
-import { telemetry } from '$lib/stores/telemetry';
+import { telemetry, fcAvailableModes } from '$lib/stores/telemetry';
 import { connection, isArduPilotLink } from '$lib/stores/connection';
 import { autopilotSystem } from '$lib/stores/autopilotContext';
 import { arduVehicleClass, downloadArduMissionFromFc } from '$lib/stores/missionArdupilot';
@@ -151,10 +151,11 @@ export const stickModesUnlocked: Readable<boolean> = derived(
 /** Armed state from the unified arming flags (bit 2 = armed, matches the recorder convention). */
 export const isArmed: Readable<boolean> = derived(telemetry, (t) => (t.armingFlags & 0x04) !== 0);
 
-/** The FC's currently active mode (matched against the firmware/vehicle table), or undefined. */
+/** The FC's currently active mode (matched against the firmware/vehicle table, then the FC-reported
+ *  list), or undefined. */
 export const activeMode: Readable<MavMode | undefined> = derived(
-  [telemetry, autopilotSystem, arduVehicleClass],
-  ([t, sys, cls]) => matchActiveMode(sys, cls, t.flightModeFlags),
+  [telemetry, autopilotSystem, arduVehicleClass, fcAvailableModes],
+  ([t, sys, cls, fc]) => matchActiveMode(sys, cls, t.flightModeFlags, fc),
 );
 
 // ── Commands ────────────────────────────────────────────────────────────────

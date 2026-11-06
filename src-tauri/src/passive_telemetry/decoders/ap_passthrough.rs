@@ -32,12 +32,14 @@ const ID_PARAM: u16 = 0x5007;
 const ID_WAYPOINT: u16 = 0x500D;
 
 /// Best-effort map of the PARAM frame-type value (≈ MAV_TYPE) to the variant string `classify_ardupilot`
-/// expects ("plane" → plane table, else copter). Bonus only — verify against a real AP source.
+/// expects ("plane" / "rover" / "sub" → that table, else copter). Bonus only — verify against a real AP source.
 fn variant_from_frame_type(mav_type: u32) -> &'static str {
     match mav_type {
         1 => "plane",                         // FIXED_WING
         19..=25 => "plane", // VTOL variants
-        _ => "copter",                        // quad/hexa/octo/heli/tri/... (rover unhandled → copter)
+        10 | 11 => "rover",                   // GROUND_ROVER, SURFACE_BOAT (both run ArduRover)
+        12 => "sub",                          // SUBMARINE
+        _ => "copter",                        // quad/hexa/octo/heli/tri/...
     }
 }
 

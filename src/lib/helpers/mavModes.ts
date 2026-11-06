@@ -7,9 +7,15 @@
 //   - ArduPilot: `main` = the flat Mode::Number, `sub` = 0.
 //   - PX4: `main` = PX4_CUSTOM_MAIN_MODE_*, `sub` = PX4_CUSTOM_SUB_MODE_AUTO_* (0 if none).
 //
-// Numbers verified against ArduCopter mode.h, ArduPlane/Rover mode tables, and PX4 px4_custom_mode.h.
+// Numbers verified against ArduCopter / ArduPlane / ArduRover / ArduSub mode.h and PX4 px4_custom_mode.h.
 // `stick` flags modes that need transmitter sticks to fly — locked unless an RC link is present
 // (a GCS-only switch into one of these without a TX is an instant crash). See docs/active/VEHICLE_CONTROL.md.
+//
+// ArduPilot 4.6+ also reports its own mode list (MAVLink AVAILABLE_MODES, read by the backend on
+// connect): which modes this build has, and which can't be entered right now (Follow without
+// FOLL_ENABLE, FlowHold without a flow sensor, …). When that list is present `availableModesFor`
+// filters these tables by it; the tables still supply the labels, the stick lock and the Guided flag,
+// since the FC's list carries none of that. Firmware without AVAILABLE_MODES gets the full tables.
 
 import type { VehicleClass } from './arduCommandCatalog';
 import type { AutopilotSystem } from '$lib/stores/autopilotContext';
@@ -29,7 +35,25 @@ export interface MavMode {
   guided?: boolean;
   /** VTOL-only (QuadPlane) — only offered for that class. */
   vtol?: boolean;
+  /** Entered by the FC itself (failsafe / avoidance / boot), never offered as a button. Kept in the
+   *  table so the active mode is still recognised. */
+  hidden?: boolean;
 }
+
+/** One mode as reported by the FC (MAVLink AVAILABLE_MODES). */
+export interface FcMode {
+  /** ArduPilot: the flat Mode::Number. */
+  customMode: number;
+  /** MAV_STANDARD_MODE (0 = non-standard). */
+  standardMode: number;
+  /** MAV_MODE_PROPERTY bitmask. */
+  properties: number;
+  /** The FC's display name. */
+  name: string;
+}
+
+/** MAV_MODE_PROPERTY_NOT_USER_SELECTABLE — the FC says don't offer it (not enabled / not usable now). */
+const PROP_NOT_USER_SELECTABLE = 2;
 
 // ── ArduCopter (Mode::Number) ───────────────────────────────────────────────
 const COPTER: MavMode[] = [
@@ -42,10 +66,26 @@ const COPTER: MavMode[] = [
   { key: 'poshold',   name: 'PosHold',   main: 16, sub: 0, stick: false },
   { key: 'brake',     name: 'Brake',     main: 17, sub: 0, stick: false },
   { key: 'smartrtl',  name: 'SmartRTL',  main: 21, sub: 0, stick: false },
+  { key: 'autortl',   name: 'AutoRTL',   main: 27, sub: 0, stick: false },
+  { key: 'follow',    name: 'Follow',    main: 23, sub: 0, stick: false },
   { key: 'stabilize', name: 'Stabilize', main: 0,  sub: 0, stick: true },
   { key: 'acro',      name: 'Acro',      main: 1,  sub: 0, stick: true },
   { key: 'althold',   name: 'AltHold',   main: 2,  sub: 0, stick: true },
   { key: 'sport',     name: 'Sport',     main: 13, sub: 0, stick: true },
+  { key: 'drift',     name: 'Drift',     main: 11, sub: 0, stick: true },
+  { key: 'flowhold',  name: 'FlowHold',  main: 22, sub: 0, stick: true },
+  // ZigZag records its A/B points from an RC switch; AutoTune needs a pilot to reposition / abort.
+  { key: 'zigzag',    name: 'ZigZag',    main: 24, sub: 0, stick: true },
+  { key: 'autotune',  name: 'AutoTune',  main: 15, sub: 0, stick: true },
+  // Throw / Guided NoGPS / Flip / SystemID / Turtle: special-purpose and unforgiving without a pilot
+  // on the sticks (Guided NoGPS holds attitude only — no position hold, it drifts).
+  { key: 'throw',     name: 'Throw',     main: 18, sub: 0, stick: true },
+  { key: 'guided_nogps', name: 'Guided NoGPS', main: 20, sub: 0, stick: true },
+  { key: 'flip',      name: 'Flip',      main: 14, sub: 0, stick: true },
+  { key: 'systemid',  name: 'SystemID',  main: 25, sub: 0, stick: true },
+  { key: 'turtle',    name: 'Turtle',    main: 28, sub: 0, stick: true },
+  { key: 'avoid_adsb', name: 'Avoid ADSB', main: 19, sub: 0, stick: false, hidden: true },
+  { key: 'autorotate', name: 'Autorotate', main: 26, sub: 0, stick: false, hidden: true },
 ];
 
 // ── ArduPlane (Mode::Number). Q* modes are VTOL-only (QuadPlane). ────────────
@@ -57,10 +97,13 @@ const PLANE: MavMode[] = [
   { key: 'cruise',    name: 'Cruise',    main: 7,  sub: 0, stick: false },
   { key: 'circle',    name: 'Circle',    main: 1,  sub: 0, stick: false },
   { key: 'takeoff',   name: 'Takeoff',   main: 13, sub: 0, stick: false },
+  { key: 'autoland',  name: 'AutoLand',  main: 26, sub: 0, stick: false },
+  { key: 'thermal',   name: 'Thermal',   main: 24, sub: 0, stick: false },
   { key: 'qrtl',      name: 'QRTL',      main: 21, sub: 0, stick: false, vtol: true },
   { key: 'qloiter',   name: 'QLoiter',   main: 19, sub: 0, stick: false, vtol: true },
   { key: 'qland',     name: 'QLand',     main: 20, sub: 0, stick: false, vtol: true },
   { key: 'qhover',    name: 'QHover',    main: 18, sub: 0, stick: false, vtol: true },
+  { key: 'loiter_qland', name: 'Loiter to QLand', main: 25, sub: 0, stick: false, vtol: true },
   { key: 'manual',    name: 'Manual',    main: 0,  sub: 0, stick: true },
   { key: 'acro',      name: 'Acro',      main: 4,  sub: 0, stick: true },
   { key: 'fbwa',      name: 'FBWA',      main: 5,  sub: 0, stick: true },
@@ -68,9 +111,16 @@ const PLANE: MavMode[] = [
   // (the pilot steers via roll) — without an RC link it can't be steered, so it is stick-dependent.
   { key: 'fbwb',      name: 'FBWB',      main: 6,  sub: 0, stick: true },
   { key: 'stabilize', name: 'Stabilize', main: 2,  sub: 0, stick: true },
+  { key: 'training',  name: 'Training',  main: 3,  sub: 0, stick: true },
+  { key: 'autotune',  name: 'AutoTune',  main: 8,  sub: 0, stick: true },
+  { key: 'qstabilize', name: 'QStabilize', main: 17, sub: 0, stick: true, vtol: true },
+  { key: 'qacro',     name: 'QAcro',     main: 23, sub: 0, stick: true, vtol: true },
+  { key: 'qautotune', name: 'QAutoTune', main: 22, sub: 0, stick: true, vtol: true },
+  { key: 'avoid_adsb', name: 'Avoid ADSB', main: 14, sub: 0, stick: false, hidden: true },
+  { key: 'initialising', name: 'Initialising', main: 16, sub: 0, stick: false, hidden: true },
 ];
 
-// ── ArduRover (Mode::Number) ─────────────────────────────────────────────────
+// ── ArduRover (Mode::Number) — ground rover and boat ─────────────────────────
 const ROVER: MavMode[] = [
   { key: 'auto',      name: 'Auto',     main: 10, sub: 0, stick: false },
   { key: 'guided',    name: 'Guided',   main: 15, sub: 0, stick: false, guided: true },
@@ -78,9 +128,29 @@ const ROVER: MavMode[] = [
   { key: 'loiter',    name: 'Loiter',   main: 5,  sub: 0, stick: false },
   { key: 'smartrtl',  name: 'SmartRTL', main: 12, sub: 0, stick: false },
   { key: 'hold',      name: 'Hold',     main: 4,  sub: 0, stick: false },
+  { key: 'follow',    name: 'Follow',   main: 6,  sub: 0, stick: false },
+  { key: 'dock',      name: 'Dock',     main: 8,  sub: 0, stick: false },
+  { key: 'circle',    name: 'Circle',   main: 9,  sub: 0, stick: false },
   { key: 'manual',    name: 'Manual',   main: 0,  sub: 0, stick: true },
   { key: 'acro',      name: 'Acro',     main: 1,  sub: 0, stick: true },
   { key: 'steering',  name: 'Steering', main: 3,  sub: 0, stick: true },
+  { key: 'simple',    name: 'Simple',   main: 7,  sub: 0, stick: true },
+  { key: 'initialising', name: 'Initialising', main: 16, sub: 0, stick: false, hidden: true },
+];
+
+// ── ArduSub (Mode::Number) — its own numbering, NOT Rover's (Sub 4 = Guided, Rover 4 = Hold) ──
+const SUB: MavMode[] = [
+  { key: 'auto',      name: 'Auto',       main: 3,  sub: 0, stick: false },
+  { key: 'guided',    name: 'Guided',     main: 4,  sub: 0, stick: false, guided: true },
+  { key: 'circle',    name: 'Circle',     main: 7,  sub: 0, stick: false },
+  { key: 'surface',   name: 'Surface',    main: 9,  sub: 0, stick: false },
+  { key: 'manual',    name: 'Manual',     main: 19, sub: 0, stick: true },
+  { key: 'stabilize', name: 'Stabilize',  main: 0,  sub: 0, stick: true },
+  { key: 'acro',      name: 'Acro',       main: 1,  sub: 0, stick: true },
+  { key: 'althold',   name: 'Depth Hold', main: 2,  sub: 0, stick: true },
+  { key: 'poshold',   name: 'PosHold',    main: 16, sub: 0, stick: true },
+  { key: 'surftrak',  name: 'SurfTrak',   main: 21, sub: 0, stick: true },
+  { key: 'motor_detect', name: 'Motor Detect', main: 20, sub: 0, stick: false, hidden: true },
 ];
 
 // ── PX4 (main_mode / auto sub_mode) ──────────────────────────────────────────
@@ -98,8 +168,8 @@ const PX4: MavMode[] = [
   { key: 'stabilized', name: 'Stabilized', main: 7, sub: 0, stick: true },
 ];
 
-/** All modes available for the given firmware + vehicle class (unfiltered by RC-presence). */
-export function modesFor(system: AutopilotSystem, cls: VehicleClass): MavMode[] {
+/** The complete table for a firmware + vehicle class, hidden (FC-entered) modes included. */
+function tableFor(system: AutopilotSystem, cls: VehicleClass): MavMode[] {
   if (system === 'px4') return PX4;
   // ArduPilot — pick the table by vehicle class.
   switch (cls) {
@@ -108,9 +178,47 @@ export function modesFor(system: AutopilotSystem, cls: VehicleClass): MavMode[] 
     case 'plane':     return PLANE.filter((m) => !m.vtol);   // hide VTOL-only modes on a plain plane
     case 'rover':
     case 'boat':      return ROVER;
-    case 'sub':       return ROVER;                          // base set; Sub-specific modes TBD
+    case 'sub':       return SUB;
     default:          return PLANE;
   }
+}
+
+/** All selectable modes for the given firmware + vehicle class from the static tables (unfiltered by
+ *  RC presence or by what the FC reports — see `availableModesFor` for the panel's list). */
+export function modesFor(system: AutopilotSystem, cls: VehicleClass): MavMode[] {
+  return tableFor(system, cls).filter((m) => !m.hidden);
+}
+
+/** The FC's own name for a mode it reports but our table doesn't know, as a button entry. Locked
+ *  behind the RC link: we can't vouch that it flies without a pilot. */
+function unknownFcMode(f: FcMode): MavMode {
+  return { key: `fc_${f.customMode}`, name: f.name || `Mode ${f.customMode}`, main: f.customMode, sub: 0, stick: true };
+}
+
+/**
+ * The modes to offer in the control panel. ArduPilot with an FC-reported list (AVAILABLE_MODES): only
+ * modes the FC has and allows right now, in table order, plus any mode the FC reports that the table
+ * doesn't know (appended, stick-locked). Otherwise (older firmware, PX4, list not received yet): the
+ * static table.
+ */
+export function availableModesFor(
+  system: AutopilotSystem,
+  cls: VehicleClass,
+  fc: FcMode[] | null | undefined,
+): MavMode[] {
+  const table = modesFor(system, cls);
+  if (system !== 'ardupilot' || !fc || fc.length === 0) return table;
+
+  const selectable = fc.filter((f) => (f.properties & PROP_NOT_USER_SELECTABLE) === 0);
+  const offered = new Set(selectable.map((f) => f.customMode));
+  // Every number the firmware's table defines, hidden and VTOL-only included (a plain plane's Q modes
+  // are known, just not offered) — only truly unknown modes get appended.
+  const known = new Set(tableFor(system, cls === 'plane' ? 'quadplane' : cls).map((m) => m.main));
+  const out = table.filter((m) => offered.has(m.main));
+  for (const f of selectable) {
+    if (!known.has(f.customMode)) out.push(unknownFcMode(f));
+  }
+  return out;
 }
 
 /** The Guided/reposition-ready mode for the toggle (GUIDED on ArduPilot, HOLD on PX4). */
@@ -127,12 +235,17 @@ export function decodeCustomMode(system: AutopilotSystem, customMode: number): {
   return { main: customMode >>> 0, sub: 0 };
 }
 
-/** Find the table entry matching the FC's raw `custom_mode`, or undefined if unknown. */
+/** Find the table entry matching the FC's raw `custom_mode` (hidden modes included, then any
+ *  FC-reported mode the table doesn't know), or undefined if unknown. */
 export function matchActiveMode(
   system: AutopilotSystem,
   cls: VehicleClass,
   customMode: number,
+  fc?: FcMode[] | null,
 ): MavMode | undefined {
   const { main, sub } = decodeCustomMode(system, customMode);
-  return modesFor(system, cls).find((m) => m.main === main && m.sub === sub);
+  const hit = tableFor(system, cls).find((m) => m.main === main && m.sub === sub);
+  if (hit || system !== 'ardupilot' || !fc) return hit;
+  const f = fc.find((x) => x.customMode === main);
+  return f ? unknownFcMode(f) : undefined;
 }

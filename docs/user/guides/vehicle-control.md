@@ -65,6 +65,13 @@ The current mode is shown large and centred. Below it:
 - **Show all modes** reveals the remaining **stick-flown** modes — selectable **only with an RC source**
   (a connected transmitter, or active RC control — see the interlocks above).
 
+On **ArduPilot 4.6 and newer** the list comes from the flight controller itself, so it shows exactly the
+modes your firmware build has. Modes the FC reports as unusable right now are left out (for example
+Follow while `FOLL_ENABLE` is off, or FlowHold without an optical-flow sensor). A mode the FC reports
+that Kite doesn't recognise appears under **Show all modes** with the FC's own name, locked behind the
+RC link like the stick-flown modes. Older firmware gets Kite's built-in list for the vehicle type
+(Copter, Plane / QuadPlane, Rover / Boat, Sub).
+
 Mode colours match the rest of the app (see the [quick tour](../getting-started/quick-tour.md) legend).
 
 ## Takeoff, return and landing

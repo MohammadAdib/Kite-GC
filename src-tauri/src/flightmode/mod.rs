@@ -183,13 +183,18 @@ pub fn classify_px4_nav_state(nav_state: u8) -> FlightModeState {
     FlightModeState::primary(id)
 }
 
-/// Classify an ArduPilot HEARTBEAT custom_mode into the canonical model (no modifiers). The id set
-/// mirrors the old frontend `ARDU_PLANE_MODES` / `ARDU_COPTER_MODES` tables; the registry resolves
-/// label + category. Plane vs Copter is selected from the fc_variant string.
+/// Classify an ArduPilot HEARTBEAT custom_mode into the canonical model (no modifiers). Each vehicle
+/// firmware has its own flat Mode::Number table, picked from the fc_variant string ("ArduPlane",
+/// "ArduRover", "ArduSub", else Copter; the S.Port passthrough decoder passes lowercase "plane"/"rover"/
+/// "sub"/"copter"). The registry resolves label + category.
 pub fn classify_ardupilot(custom_mode: u32, variant: &str) -> FlightModeState {
-    let is_plane = variant.to_ascii_lowercase().contains("plane");
-    let id = if is_plane {
+    let v = variant.to_ascii_lowercase();
+    let id = if v.contains("plane") {
         ardu_plane_mode_id(custom_mode)
+    } else if v.contains("rover") {
+        ardu_rover_mode_id(custom_mode)
+    } else if v.contains("sub") {
+        ardu_sub_mode_id(custom_mode)
     } else {
         ardu_copter_mode_id(custom_mode)
     };
@@ -216,6 +221,7 @@ fn ardu_plane_mode_id(mode: u32) -> Option<&'static str> {
         13 => "takeoff",
         14 => "avoid_adsb",
         15 => "guided",
+        16 => "ardu_initialising",
         17 => "qstabilize",
         18 => "qhover",
         19 => "qloiter",
@@ -225,6 +231,46 @@ fn ardu_plane_mode_id(mode: u32) -> Option<&'static str> {
         23 => "qacro",
         24 => "thermal",
         25 => "loiter_qland",
+        26 => "autoland",
+        _ => return None,
+    })
+}
+
+/// ArduRover (ground rover + boat) Mode::Number.
+fn ardu_rover_mode_id(mode: u32) -> Option<&'static str> {
+    Some(match mode {
+        0 => "manual",
+        1 => "acro",
+        3 => "steering",
+        4 => "hold",
+        5 => "loiter",
+        6 => "follow",
+        7 => "simple",
+        8 => "dock",
+        9 => "circle",
+        10 => "ardu_auto",
+        11 => "rtl",
+        12 => "smartrtl",
+        15 => "guided",
+        16 => "ardu_initialising",
+        _ => return None,
+    })
+}
+
+/// ArduSub Mode::Number.
+fn ardu_sub_mode_id(mode: u32) -> Option<&'static str> {
+    Some(match mode {
+        0 => "stabilize",
+        1 => "acro",
+        2 => "althold", // depth hold
+        3 => "ardu_auto",
+        4 => "guided",
+        7 => "circle",
+        9 => "surface",
+        16 => "poshold",
+        19 => "manual",
+        20 => "motor_detect",
+        21 => "surftrak",
         _ => return None,
     })
 }
@@ -256,6 +302,7 @@ fn ardu_copter_mode_id(mode: u32) -> Option<&'static str> {
         25 => "systemid",
         26 => "autorotate",
         27 => "autortl",
+        28 => "turtle",
         _ => return None,
     })
 }
@@ -304,5 +351,30 @@ mod tests {
         assert_eq!(classify_mavlink(4, "ArduCopter").primary, "guided");
         // The same raw value 4 under PX4 is main_mode 0 (no high bytes) → unknown.
         assert_eq!(classify_mavlink(4, "PX4").primary, "px4_mode_0_0");
+    }
+
+    /// Rover/Boat and Sub used to fall through to the Copter table: a rover in HOLD (4) showed
+    /// "Guided", AUTO (10) showed "ardu_mode_10".
+    #[test]
+    fn ardupilot_tables_per_vehicle() {
+        // Same raw value, four different modes.
+        assert_eq!(classify_ardupilot(4, "ArduCopter").primary, "guided");
+        assert_eq!(classify_ardupilot(4, "ArduPlane").primary, "acro");
+        assert_eq!(classify_ardupilot(4, "ArduRover").primary, "hold");
+        assert_eq!(classify_ardupilot(4, "ArduSub").primary, "guided");
+
+        assert_eq!(classify_ardupilot(10, "ArduRover").primary, "ardu_auto");
+        assert_eq!(classify_ardupilot(12, "ArduRover").primary, "smartrtl");
+        assert_eq!(classify_ardupilot(9, "ArduSub").primary, "surface");
+        assert_eq!(classify_ardupilot(19, "ArduSub").primary, "manual");
+        assert_eq!(classify_ardupilot(21, "ArduSub").primary, "surftrak");
+        // Previously missing numbers.
+        assert_eq!(classify_ardupilot(28, "ArduCopter").primary, "turtle");
+        assert_eq!(classify_ardupilot(26, "ArduPlane").primary, "autoland");
+        // Passthrough decoder's lowercase variants.
+        assert_eq!(classify_ardupilot(4, "rover").primary, "hold");
+        assert_eq!(classify_ardupilot(9, "sub").primary, "surface");
+        // Unknown numbers keep the raw fallback.
+        assert_eq!(classify_ardupilot(99, "ArduRover").primary, "ardu_mode_99");
     }
 }

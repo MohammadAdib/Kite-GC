@@ -11,6 +11,7 @@ import { invoke } from '@tauri-apps/api/core';
 import { connection, connectionProtocol, fcLinkAlive } from '$lib/stores/connection';
 import { arduVehicleClass } from '$lib/stores/missionArdupilot';
 import type { FlightModeState } from '$lib/helpers/flightModeRegistry';
+import type { FcMode } from '$lib/helpers/mavModes';
 
 /** One battery monitor instance (ArduPilot/PX4 multi-battery). Live: from the `telemetry-batteries`
  *  event; replay: synthesised from `battery_records`. Single-battery setups have one entry derived from
@@ -160,6 +161,11 @@ const defaultTelemetry: TelemetryData = {
 
 export const telemetry = writable<TelemetryData>({ ...defaultTelemetry });
 
+/** The FC's own mode list (MAVLink AVAILABLE_MODES, ArduPilot 4.6+), read once per connect by the
+ *  backend. null until it arrives, and for firmware that doesn't report one — the control panel then
+ *  uses the static tables (see `availableModesFor`). Cleared by `resetTelemetry`. */
+export const fcAvailableModes = writable<FcMode[] | null>(null);
+
 // ── Dev GPS injection (debug only) ──────────────────────────────────
 // Force the UAV position/altitude (+ a valid fix) regardless of the real telemetry, so conflict alerts
 // and the map can be tested over busy airspace from the desk. Driven from the dev Debug Monitor.
@@ -205,6 +211,7 @@ export function setFcVariant(variant: string) {
 
 export function resetTelemetry() {
   telemetry.set({ ...defaultTelemetry });
+  fcAvailableModes.set(null);
   // Altitude reference defaults back to MSL (replay/idle treat altMsl as true MSL). The ground anchor
   // is intentionally NOT cleared — it persists across reconnects so a relative-only session (LTM) keeps
   // its reference until a real-MSL protocol supersedes it.
@@ -470,6 +477,21 @@ export async function startTelemetryListeners() {
         connection.update((c) => (c.fcInfo ? { ...c, fcInfo: { ...c.fcInfo, blackbox } } : c));
       }
     })
+  );
+
+  // FC-reported mode list (AVAILABLE_MODES) — one-shot after connect, again if the FC's set changes.
+  unlisteners.push(
+    await listen<{ modes: { custom_mode: number; standard_mode: number; properties: number; name: string }[] }>(
+      'available-modes',
+      (event) => {
+        fcAvailableModes.set(event.payload.modes.map((m) => ({
+          customMode: m.custom_mode,
+          standardMode: m.standard_mode,
+          properties: m.properties,
+          name: m.name,
+        })));
+      },
+    )
   );
 
   unlisteners.push(

@@ -110,6 +110,19 @@ export const MODE_REGISTRY: Record<string, ModeDef> = {
   qacro:        { label: 'QAcro',       category: 'acro' },
   thermal:      { label: 'Thermal',     category: 'other' },
   loiter_qland: { label: 'Loiter QLand', category: 'land' },
+  ardu_initialising: { label: 'Initialising', category: 'other' },
+  // Copter TURTLE (28) and Plane AUTOLAND (26) reuse the INAV `turtle` / `autoland` entries above.
+
+  // ── ArduRover (ground rover + boat) ──
+  hold:         { label: 'Hold',        category: 'poshold' },
+  steering:     { label: 'Steering',    category: 'stabilized' },
+  simple:       { label: 'Simple',      category: 'stabilized' },
+  dock:         { label: 'Dock',        category: 'land' },
+
+  // ── ArduSub ──
+  surface:      { label: 'Surface',     category: 'rth' },
+  surftrak:     { label: 'SurfTrak',    category: 'althold' },
+  motor_detect: { label: 'Motor Detect', category: 'other' },
 
   // ── PX4 (main + sub mode; shared manual/acro/mission/land/takeoff reuse the entries above) ──
   px4_altitude:     { label: 'Altitude',       category: 'althold' },

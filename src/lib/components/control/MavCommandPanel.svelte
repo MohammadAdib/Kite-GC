@@ -22,7 +22,8 @@
   import NumberStepper from '$lib/components/NumberStepper.svelte';
   import { autopilotSystem } from '$lib/stores/autopilotContext';
   import { arduVehicleClass, arduMission, arduMissionFcSynced, MAV_CMD_SHORT } from '$lib/stores/missionArdupilot';
-  import { modesFor, type MavMode } from '$lib/helpers/mavModes';
+  import { availableModesFor, type MavMode } from '$lib/helpers/mavModes';
+  import { fcAvailableModes } from '$lib/stores/telemetry';
   import {
     controlAvailable, stickModesUnlocked, isArmed, activeMode, busyAction, lastFeedback,
     guidedActive,
@@ -33,14 +34,17 @@
 
   const sys = $derived($autopilotSystem);
   const cls = $derived($arduVehicleClass);
-  const allModes = $derived(modesFor(sys, cls));
+  // The FC's own mode list when it reports one (ArduPilot 4.6+), else the static table.
+  const allModes = $derived(availableModesFor(sys, cls, $fcAvailableModes));
   const safeModes = $derived(allModes.filter((m) => !m.stick));
   const stickModes = $derived(allModes.filter((m) => m.stick));
 
   // Modes with their own dedicated control (Guided toggle, RTL/Land hold buttons, Takeoff command,
-  // PX4 mission/hold modes) are not repeated as quick mode buttons.
-  const DEDICATED = new Set(['guided', 'hold', 'rtl', 'return', 'land', 'takeoff', 'mission']);
-  const quickModes = $derived(safeModes.filter((m) => !DEDICATED.has(m.key)));
+  // PX4 mission/hold modes) are not repeated as quick mode buttons. Per firmware: PX4's HOLD is the
+  // Guided toggle, but ArduRover's Hold is an ordinary mode with no other button.
+  const DEDICATED_PX4 = new Set(['hold', 'mission', 'return', 'land', 'takeoff']);
+  const DEDICATED_ARDU = new Set(['guided', 'rtl', 'land', 'takeoff']);
+  const quickModes = $derived(safeModes.filter((m) => !(sys === 'px4' ? DEDICATED_PX4 : DEDICATED_ARDU).has(m.key)));
 
   let showAllModes = $state(false);
   const stickUnlocked = $derived($stickModesUnlocked); // RC transmitter OR engaged RC control

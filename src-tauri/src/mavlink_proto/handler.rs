@@ -216,6 +216,9 @@ fn handler_loop(
     const MAX_PARAM_PROBES: u8 = 6;
     const PARAM_PROBE_INTERVAL: Duration = Duration::from_millis(1200);
 
+    // FC-reported mode list (AVAILABLE_MODES, ArduPilot 4.6+) for the vehicle-control panel — see modes.rs.
+    let mut mode_enum = super::modes::ModeEnumerator::new(Instant::now());
+
     let gcs_header = codec::gcs_header();
 
     // RC override streaming (ArduPilot, docs/active/MAVLINK_RC_CONTROL.md §3). We stream
@@ -386,6 +389,16 @@ fn handler_loop(
             last_param_probe = Instant::now();
         }
 
+        // 2c. Enumerate the FC's available modes, one index per request (ArduPilot only; the frontend
+        // merge is ArduPilot-specific). Stops by itself once complete or unanswered.
+        if is_ardupilot {
+            if let Some(index) = mode_enum.poll(Instant::now()) {
+                let msg = super::modes::ModeEnumerator::request_msg(fc_sysid, index);
+                send_mav_frame(&mut *transport, &gcs_header, &mut seq, &msg,
+                    &mut debug_tracker, &mut link_stats, &recorder);
+            }
+        }
+
         // 3. Read incoming bytes and parse MAVLink frames
         match transport.read_bytes(&mut buf) {
             Ok(0) => {}
@@ -503,6 +516,24 @@ fn handler_loop(
                     // gimbal feedback, etc. legitimately come from other components on the same sysid).
                     if matches!(frame.message, MavMessage::HEARTBEAT(_)) && frame.header.component_id != fc_compid {
                         continue;
+                    }
+
+                    // FC mode list (AVAILABLE_MODES / _MONITOR) — consumed here, never dispatched as telemetry.
+                    if frame.header.component_id == fc_compid {
+                        match &frame.message {
+                            MavMessage::AVAILABLE_MODES(m) => {
+                                if let Some(modes) = mode_enum.on_mode(m) {
+                                    log::info!("AVAILABLE_MODES: FC reports {} modes", modes.len());
+                                    let _ = app_handle.emit("available-modes", serde_json::json!({ "modes": modes }));
+                                }
+                                continue;
+                            }
+                            MavMessage::AVAILABLE_MODES_MONITOR(m) => {
+                                mode_enum.on_monitor(m.seq, Instant::now());
+                                continue;
+                            }
+                            _ => {}
+                        }
                     }
 
                     dispatch_message(&frame.header, &frame.message, &fc_variant, &app_handle, &mut analog, &mut batteries, &mut fused, &mut quadplane_seen, &recorder, inav_tunnel.load(Ordering::Relaxed));
