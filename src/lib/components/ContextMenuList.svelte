@@ -13,11 +13,14 @@
     items,
     x,
     y,
+    anchorTop,
     onpick,
   }: {
     items: ContextMenuItem[];
     x: number;
     y: number;
+    /** Dropdown opener's top edge: flip above it when the menu doesn't fit below `y`. */
+    anchorTop?: number;
     onpick: () => void;
   } = $props();
 
@@ -36,7 +39,12 @@
     }
     const r = menuEl.getBoundingClientRect();
     const nx = x + r.width > window.innerWidth ? Math.max(4, x - r.width) : x;
-    const ny = y + r.height > window.innerHeight ? Math.max(4, window.innerHeight - r.height - 4) : y;
+    const fitsBelow = y + r.height <= window.innerHeight;
+    const ny = fitsBelow
+      ? y
+      : anchorTop != null && anchorTop - r.height >= 4
+        ? anchorTop - r.height
+        : Math.max(4, window.innerHeight - r.height - 4);
     pos = { x: nx, y: ny };
   });
 
@@ -97,6 +105,11 @@
     transform: scale(var(--ui-scale, 1));
     transform-origin: top left;
     min-width: 168px;
+    /* Long lists (a flight-mode picker) scroll instead of running off screen. The limit is in
+       unscaled px, so divide by the scale applied above. Submenu flyouts are siblings, not children,
+       so the overflow never clips them. */
+    max-height: calc((100vh - 8px) / var(--ui-scale, 1));
+    overflow-y: auto;
     padding: 4px;
     background: rgba(30, 30, 30, 0.75);
     backdrop-filter: var(--glass-blur, blur(6px));

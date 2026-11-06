@@ -66,7 +66,7 @@
 {:else if id === 'home'}
   <HomeWidget {telem} size={sizePx} {interfaceSettings} />
 {:else if id === 'flightMode'}
-  <FlightModeWidget {telem} size={sizePx} />
+  <FlightModeWidget {telem} size={sizePx} {editing} />
 {:else if id === 'liveAgl'}
   <LiveAglWidget {telem} {interfaceSettings} width={wPx} height={hPx} />
 {:else if id === 'terrainRadar'}

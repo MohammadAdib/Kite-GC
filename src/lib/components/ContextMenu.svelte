@@ -41,5 +41,5 @@
 />
 
 {#if $contextMenu.open}
-  <ContextMenuList items={$contextMenu.items} x={$contextMenu.x} y={$contextMenu.y} onpick={closeContextMenu} />
+  <ContextMenuList items={$contextMenu.items} x={$contextMenu.x} y={$contextMenu.y} anchorTop={$contextMenu.anchorTop} onpick={closeContextMenu} />
 {/if}

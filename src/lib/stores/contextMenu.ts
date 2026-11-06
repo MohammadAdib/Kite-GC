@@ -27,13 +27,16 @@ interface ContextMenuState {
   x: number;
   y: number;
   items: ContextMenuItem[];
+  /** Dropdown use: the opener's top edge. When the menu doesn't fit below `y`, it is placed with its
+   *  bottom edge here (above the opener) instead of being pushed up over it. */
+  anchorTop?: number;
 }
 
 export const contextMenu = writable<ContextMenuState>({ open: false, x: 0, y: 0, items: [] });
 
-export function openContextMenu(x: number, y: number, items: ContextMenuItem[]): void {
+export function openContextMenu(x: number, y: number, items: ContextMenuItem[], anchorTop?: number): void {
   if (!items?.length) return;
-  contextMenu.set({ open: true, x, y, items });
+  contextMenu.set({ open: true, x, y, items, anchorTop });
 }
 
 export function closeContextMenu(): void {
