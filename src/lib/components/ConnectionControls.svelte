@@ -188,7 +188,7 @@
       class="tb-input host-input"
       type="text"
       bind:value={tcpHost}
-      placeholder="Host (z.B. 192.168.1.1)"
+      placeholder="127.0.0.1"
     />
     <!-- Typing here makes the port the pilot's and the selectors stop moving it, unless what was
          typed is the standard port for the current selection, which hands it back to Kite. -->

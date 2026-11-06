@@ -452,7 +452,10 @@
   let selectedProtocol = $state<ProtocolType>(isMobile ? 'mavlink' : 'msp');
   let selectedPort = $state("");
   let selectedBaud = $state(115200);
-  let tcpHost = $state("192.168.1.1");
+  // Starts blank for the pilot to type into; a blank host connects to this machine (SITL, a local
+  // bridge), so the field's placeholder shows that address.
+  let tcpHost = $state("");
+  const DEFAULT_NET_HOST = "127.0.0.1";
   /** Port a fresh profile starts on: the MAVLink GCS convention on mobile (Wi-Fi links only),
    *  INAV SITL's MSP port on the desktop. */
   const INITIAL_NET_PORT = isMobile ? 14550 : 5761;
@@ -2628,10 +2631,6 @@
       errorMsg = $t('connection.noPortSelected');
       return;
     }
-    if ((selectedTransport === 'tcp' || selectedTransport === 'udp') && !tcpHost) {
-      errorMsg = $t('connection.noHostSpecified');
-      return;
-    }
     if (selectedTransport === 'ble' && !selectedBleDevice) {
       errorMsg = $t('connection.noBleDeviceSelected');
       return;
@@ -2651,7 +2650,7 @@
         transportType: selectedTransport,
         port: selectedTransport === 'serial' ? selectedPort : undefined,
         baudRate: selectedTransport === 'serial' ? selectedBaud : undefined,
-        host: (selectedTransport === 'tcp' || selectedTransport === 'udp') ? tcpHost : undefined,
+        host: (selectedTransport === 'tcp' || selectedTransport === 'udp') ? (tcpHost.trim() || DEFAULT_NET_HOST) : undefined,
         tcpPort: (selectedTransport === 'tcp' || selectedTransport === 'udp') ? tcpPort : undefined,
         bleDeviceId: selectedTransport === 'ble' ? selectedBleDevice : undefined,
         attitudeRateHz,

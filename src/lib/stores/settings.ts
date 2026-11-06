@@ -439,7 +439,7 @@ const defaults: AppSettings = {
   lastProtocol: 'msp',
   defaultProtocol: 'last',
   lastTransport: 'serial',
-  lastHost: '192.168.1.1',
+  lastHost: '', // blank = 127.0.0.1 (see +page.svelte DEFAULT_NET_HOST)
   lastTcpPort: 5761,
   lastBleDevice: '',
   btPortNames: {},
