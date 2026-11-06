@@ -6,6 +6,8 @@
 # download them from the run and attach them to a GitHub release by hand.
 #
 # Deliberately NOT triggered on push/tags: releases are cut on demand, not per commit.
+# dev-build.yml reuses these jobs (`workflow_call`) for the rolling `development-build` pre-release,
+# so a development build is byte-for-byte the same build as a hand-cut release.
 #
 # Linux is built on ubuntu-24.04, and the base decides two things at once.
 #
@@ -27,6 +29,7 @@ name: Release build
 
 on:
   workflow_dispatch:
+  workflow_call:
 
 env:
   CARGO_TERM_COLOR: always

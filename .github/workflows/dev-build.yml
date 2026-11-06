@@ -1,0 +1,73 @@
+# Kite Ground Control — Development build (rolling pre-release)
+#
+# Every push to `development` builds the desktop release artifacts — the same jobs as release.yml:
+# Windows x64, macOS universal (unsigned), Linux x86_64 and Linux ARM64 — and republishes them as the
+# `development-build` pre-release, replacing the previous one (release and tag), so the newest build
+# is always at the same link: .../releases/tag/development-build. Same model as TitanPlanner's
+# development builds. Stable releases stay manual (release.yml).
+#
+# Runs only on the MohammadAdib/Kite-GC fork: upstream (b14ckyy/Kite-GC) cuts its own releases and
+# shouldn't start publishing a pre-release on every push if this file travels there in a merge.
+#
+# The in-app updater still follows upstream's stable releases (tauri.conf.json endpoint); a
+# development build is installed by hand from the release page.
+
+name: Development build
+
+on:
+  push:
+    branches: [development]
+  workflow_dispatch:
+
+# One build at a time and never cancelled midway: each build's notes start at the previous published
+# development build, so a cancelled run would leave its commits out of the notes chain. A push during
+# a build waits; several pushes during one build collapse into a single follow-up build.
+concurrency:
+  group: dev-build
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Build
+    if: github.repository == 'MohammadAdib/Kite-GC'
+    uses: ./.github/workflows/release.yml
+
+  publish:
+    name: Publish development build
+    needs: build
+    if: github.repository == 'MohammadAdib/Kite-GC'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      # Full history + tags: the notes are measured from the previous `development-build` tag.
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - name: Download the build artifacts
+        uses: actions/download-artifact@v5
+        with:
+          pattern: kite-gc-*
+          path: dist
+          merge-multiple: true
+
+      - name: Release notes
+        run: |
+          bash .github/scripts/dev-release-notes.sh > notes.md
+          cat notes.md >> "$GITHUB_STEP_SUMMARY"
+          ls -la dist
+
+      - name: Publish
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          # Replace the rolling release and its tag, so the new one is created on this commit.
+          gh release delete development-build --yes --cleanup-tag || true
+          gh api -X DELETE "repos/$GH_REPO/git/refs/tags/development-build" > /dev/null 2>&1 || true
+          gh release create development-build --target "$GITHUB_SHA" --prerelease \
+            --title "Development Build" --notes-file notes.md dist/*
