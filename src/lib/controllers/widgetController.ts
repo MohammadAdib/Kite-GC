@@ -52,6 +52,19 @@ export function toggleWidgetVisibility(
       },
     };
   }
+  // A companion widget (GPS 2 → GPS) goes right after its partner — under it in the side column,
+  // beside it in the bottom dock — at the partner's size.
+  const companion = WIDGET_MAP.get(widgetId)?.companionOf;
+  const companionPanel = companion ? getWidgetPanel(panels, companion) : null;
+  if (companion && companionPanel) {
+    const list = [...panels[companionPanel]];
+    list.splice(list.indexOf(companion) + 1, 0, widgetId);
+    return {
+      ...panels,
+      [companionPanel]: list,
+      sizes: { ...panels.sizes, [widgetId]: effectiveWidgetSize(companion, panels.sizes) },
+    };
+  }
   const target = panels.positions?.[widgetId] ?? 'bottom';
   return { ...panels, [target]: [...panels[target], widgetId] };
 }

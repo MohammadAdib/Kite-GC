@@ -25,6 +25,7 @@ use super::codec::{self, MavSequence};
 // ── Managed message IDs ──────────────────────────────────────────────────────────────────────
 const ID_SYS_STATUS: f32 = 1.0;
 const ID_GPS_RAW_INT: f32 = 24.0;
+const ID_GPS2_RAW: f32 = 124.0;
 const ID_GLOBAL_POSITION_INT: f32 = 33.0;
 const ID_MISSION_CURRENT: f32 = 42.0;
 const ID_RC_CHANNELS: f32 = 65.0;
@@ -50,6 +51,9 @@ const WANTED: &[(f32, u8)] = &[
     // GPS_RAW_INT now contributes only fix type / sat count / HDOP (slow-changing) — the position,
     // ground speed and course all come from the fused GLOBAL_POSITION_INT, so 1 Hz is plenty.
     (ID_GPS_RAW_INT, R_FIXED_1HZ),
+    // GPS2_RAW — the second receiver, for the GPS 2 widget. The FC only emits it when it has a second
+    // GPS, so a single-GPS vehicle spends nothing on it; with two it is one small message a second.
+    (ID_GPS2_RAW, R_FIXED_1HZ),
     // VFR_HUD is consumed only for airspeed — gated on the airspeed module (see apply_stream_rates).
     (ID_VFR_HUD, R_POSITION),
     // WIND (ArduPilot EKF wind estimate) — gated on the wind module (see apply_stream_rates).

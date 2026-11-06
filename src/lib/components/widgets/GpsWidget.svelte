@@ -3,12 +3,28 @@
   Copyright (C) 2026 Marc Hoffmann (b14ckyy)
 -->
 
-<!-- GPS widget — satellite count + fix type -->
+<!-- GPS widget — satellite count + fix type. `receiver={2}` is the GPS 2 widget: the FC's second
+     receiver (MAVLink GPS2_RAW), shown with no data when there is none. -->
 <script lang="ts">
   import type { TelemetryData } from "$lib/stores/telemetry";
   import { t } from 'svelte-i18n';
 
-  let { telem, size = 9 }: { telem: TelemetryData; size?: number } = $props();
+  let { telem, size = 9, receiver = 1 }: { telem: TelemetryData; size?: number; receiver?: 1 | 2 } = $props();
+
+  /** GPS2_RAW arrives at 1 Hz; a receiver silent this long (lost by the FC) is shown as no data. */
+  const GPS2_STALE_MS = 3000;
+
+  // One view over either receiver. GPS 1 is the main telemetry (fused position, GPS_RAW_INT fix);
+  // GPS 2 is the second receiver's own report, null until the FC sends one. The staleness check is
+  // re-evaluated on every telemetry update, which keeps arriving while connected.
+  let src = $derived.by(() => {
+    if (receiver === 1) {
+      return { live: !!telem.lastUpdate, fixType: telem.fixType, numSat: telem.numSat, hdop: telem.gpsHdop, lat: telem.lat, lon: telem.lon };
+    }
+    const g = telem.gps2;
+    const live = !!g && Date.now() - g.lastUpdate < GPS2_STALE_MS;
+    return { live, fixType: g?.fixType ?? 0, numSat: g?.numSat ?? 0, hdop: g?.hdop ?? 0, lat: g?.lat ?? 0, lon: g?.lon ?? 0 };
+  });
 
   function formatCoord(value: number, pos: string, neg: string): string {
     const hemi = value >= 0 ? pos : neg;
@@ -16,34 +32,34 @@
   }
 
   let latText = $derived(
-    telem.lastUpdate && telem.fixType > 0 ? formatCoord(telem.lat, 'N', 'S') : 'N —'
+    src.live && src.fixType > 0 ? formatCoord(src.lat, 'N', 'S') : 'N —'
   );
   let lonText = $derived(
-    telem.lastUpdate && telem.fixType > 0 ? formatCoord(telem.lon, 'E', 'W') : 'E —'
+    src.live && src.fixType > 0 ? formatCoord(src.lon, 'E', 'W') : 'E —'
   );
 
-  let sats = $derived(telem.lastUpdate ? String(telem.numSat) : '—');
+  let sats = $derived(src.live ? String(src.numSat) : '—');
 
   let fixLabel = $derived.by(() => {
-    if (!telem.lastUpdate || telem.fixType === 0) return $t('gps.noFix');
+    if (!src.live || src.fixType === 0) return $t('gps.noFix');
     const types: Record<number, string> = { 1: $t('gps.fix2d'), 2: $t('gps.fix3d'), 3: $t('gps.fix3dDgps') };
-    return types[telem.fixType] || `FIX ${telem.fixType}`;
+    return types[src.fixType] || `FIX ${src.fixType}`;
   });
 
   // Unified fix scale (backend `scheduler::telemetry::FIX_*`): 0 none · 1 2D · 2 3D · 3 DGPS/RTK.
   let fixColor = $derived(
-    !telem.lastUpdate || telem.fixType < 1 ? '#e74c3c'
-      : telem.fixType === 1 ? '#f39c12'
+    !src.live || src.fixType < 1 ? '#e74c3c'
+      : src.fixType === 1 ? '#f39c12'
       : '#27ae60'
   );
 
   let hdopText = $derived(
-    telem.lastUpdate && telem.gpsHdop > 0 ? `HDOP ${telem.gpsHdop.toFixed(1)}` : 'HDOP -'
+    src.live && src.hdop > 0 ? `HDOP ${src.hdop.toFixed(1)}` : 'HDOP -'
   );
 </script>
 
 <div class="widget-card" style="--ws: {size}px">
-  <span class="w-label">{$t('sensors.gps')}</span>
+  <span class="w-label">{receiver === 2 ? $t('widgets.gps2') : $t('sensors.gps')}</span>
   <span class="w-coord">{latText}</span>
   <span class="w-coord">{lonText}</span>
   <div class="w-meta-stack">

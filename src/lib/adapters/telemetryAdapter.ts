@@ -40,6 +40,7 @@ export function toTelemetryData(r: TelemetryRecord, fcVariant = 'INAV'): Telemet
     gpsHdop: r.gps_hdop ?? 0,
     // `heading` column = course over ground (direction of travel); `yaw` column = FC fused heading.
     course: r.heading ?? 0,
+    gps2: null, // the second receiver is not recorded
 
     // Attitude — yaw is the FC fused heading (body orientation / icon). Fall back to COG only if the
     // log has no heading at all, so the icon still points sensibly.

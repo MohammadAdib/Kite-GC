@@ -20,6 +20,9 @@ export interface WidgetDef {
   shape: WidgetShape;
   /** Size a fresh layout starts with (the widget's designed size). */
   defaultSize: WidgetSize;
+  /** A widget this one belongs with (GPS 2 → GPS): switched on, it is placed directly after / under
+   *  that widget, at its size, instead of at the end of a dock. */
+  companionOf?: string;
 }
 
 const ALL_WIDGET_DEFS: WidgetDef[] = [
@@ -29,6 +32,8 @@ const ALL_WIDGET_DEFS: WidgetDef[] = [
   { id: 'battery',      label: 'Battery',        labelKey: 'widgets.battery',      shape: 'square', defaultSize: 'S' },
   { id: 'battery2',     label: 'Battery 2',      labelKey: 'widgets.battery2',     shape: 'square', defaultSize: 'S' },
   { id: 'gps',          label: 'GPS',            labelKey: 'widgets.gps',          shape: 'square', defaultSize: 'S' },
+  // Second receiver (MAVLink GPS2_RAW). Off by default — in no default layout, desktop or phone.
+  { id: 'gps2',         label: 'GPS 2',          labelKey: 'widgets.gps2',         shape: 'square', defaultSize: 'S', companionOf: 'gps' },
   { id: 'rcLink',       label: 'RC Link',        labelKey: 'widgets.rcLink',       shape: 'square', defaultSize: 'S' },
   { id: 'compass',      label: 'Compass',        labelKey: 'widgets.compass',      shape: 'square', defaultSize: 'L' },
   { id: 'home',         label: 'Home',           labelKey: 'widgets.home',         shape: 'square', defaultSize: 'S' },

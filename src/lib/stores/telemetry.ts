@@ -36,6 +36,19 @@ export interface LinkStats {
   snrDb: number | null;       // dB (CRSF, INAV 9.1+)
 }
 
+/** The FC's second GPS receiver (MAVLink GPS2_RAW), for the GPS 2 widget. Its own raw report — the
+ *  map, home and every other consumer stay on the primary (fused) position. */
+export interface Gps2Data {
+  fixType: number; // unified fix scale, same as `fixType` below
+  numSat: number;
+  hdop: number;    // 0 = unknown
+  lat: number;
+  lon: number;
+  altMsl: number;
+  /** Arrival time (ms) — the widget treats a receiver silent for a few seconds as gone. */
+  lastUpdate: number;
+}
+
 export interface TelemetryData {
   // GPS
   lat: number;
@@ -46,6 +59,8 @@ export interface TelemetryData {
   fixType: number;
   gpsHdop: number;
   course: number;
+  /** Second GPS receiver; null when the FC has none (or hasn't reported it yet). */
+  gps2: Gps2Data | null;
 
   // Attitude
   roll: number;
@@ -141,7 +156,7 @@ export interface TelemetryData {
 }
 
 const defaultTelemetry: TelemetryData = {
-  lat: 0, lon: 0, altMsl: 0, groundSpeed: 0, numSat: 0, fixType: 0, gpsHdop: 0, course: 0,
+  lat: 0, lon: 0, altMsl: 0, groundSpeed: 0, numSat: 0, fixType: 0, gpsHdop: 0, course: 0, gps2: null,
   roll: 0, pitch: 0, yaw: 0,
   altitude: 0, vario: 0,
   airspeed: 0,
@@ -558,6 +573,29 @@ export async function startTelemetryListeners() {
         lastUpdate: Date.now(),
       }));
     })
+  );
+
+  // Second GPS receiver (MAVLink GPS2_RAW, 1 Hz) → the GPS 2 widget only.
+  unlisteners.push(
+    await listen<{ fix_type: number; num_sat: number; hdop: number | null; lat: number; lon: number; alt_msl: number }>(
+      'telemetry-gps2',
+      (event) => {
+        const p = event.payload;
+        telemetry.update((t) => ({
+          ...t,
+          gps2: {
+            fixType: p.fix_type,
+            numSat: p.num_sat,
+            // Keep the last valid HDOP when a report omits it.
+            hdop: p.hdop != null && p.hdop > 0 ? p.hdop : (t.gps2?.hdop ?? 0),
+            lat: p.lat,
+            lon: p.lon,
+            altMsl: p.alt_msl,
+            lastUpdate: Date.now(),
+          },
+        }));
+      },
+    )
   );
 }
 

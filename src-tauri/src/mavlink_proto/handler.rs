@@ -739,6 +739,19 @@ struct FusedPos {
     num_sat: u8,
 }
 
+/// MAVLink GPS_FIX_TYPE → the unified fix scale shared with MSP (`scheduler::telemetry::FIX_*`):
+/// 0 none · 1 2D · 2 3D · 3 DGPS/RTK.
+fn unified_fix_type(fix: ::mavlink::ardupilotmega::GpsFixType) -> u8 {
+    use ::mavlink::ardupilotmega::GpsFixType as F;
+    match fix {
+        F::GPS_FIX_TYPE_NO_GPS | F::GPS_FIX_TYPE_NO_FIX => 0,
+        F::GPS_FIX_TYPE_2D_FIX => 1,
+        F::GPS_FIX_TYPE_3D_FIX => 2,
+        F::GPS_FIX_TYPE_DGPS | F::GPS_FIX_TYPE_RTK_FLOAT | F::GPS_FIX_TYPE_RTK_FIXED => 3,
+        _ => 0,
+    }
+}
+
 /// Dispatch a received MAVLink message to the same Tauri events as the MSP scheduler.
 /// This ensures widgets/store work identically regardless of protocol.
 #[allow(clippy::too_many_arguments)] // dispatch helper threading the handler's mutable decode state
@@ -872,18 +885,22 @@ fn dispatch_message(header: &MavHeader, message: &MavMessage, fc_variant: &str, 
             }
         }
 
+        // ── GPS2_RAW → telemetry-gps2 (second receiver, GPS 2 widget only) ──
+        // Its own raw report: the map / home / track keep using the primary fused position.
+        MavMessage::GPS2_RAW(gps) => {
+            let _ = app_handle.emit("telemetry-gps2", serde_json::json!({
+                "fix_type": unified_fix_type(gps.fix_type),
+                "num_sat": gps.satellites_visible,
+                "hdop": if gps.eph != u16::MAX { Some(gps.eph as f64 / 100.0) } else { None },
+                "lat": gps.lat as f64 / 1e7,
+                "lon": gps.lon as f64 / 1e7,
+                "alt_msl": gps.alt as f64 / 1000.0, // mm → m
+            }));
+        }
+
         // ── GPS_RAW_INT → telemetry-gps (fix, sats, hdop) ──────────
         MavMessage::GPS_RAW_INT(gps) => {
-            let fix_type = match gps.fix_type {
-                ::mavlink::ardupilotmega::GpsFixType::GPS_FIX_TYPE_NO_GPS
-                | ::mavlink::ardupilotmega::GpsFixType::GPS_FIX_TYPE_NO_FIX => 0,
-                ::mavlink::ardupilotmega::GpsFixType::GPS_FIX_TYPE_2D_FIX => 1,
-                ::mavlink::ardupilotmega::GpsFixType::GPS_FIX_TYPE_3D_FIX => 2,
-                ::mavlink::ardupilotmega::GpsFixType::GPS_FIX_TYPE_DGPS
-                | ::mavlink::ardupilotmega::GpsFixType::GPS_FIX_TYPE_RTK_FLOAT
-                | ::mavlink::ardupilotmega::GpsFixType::GPS_FIX_TYPE_RTK_FIXED => 3,
-                _ => 0,
-            };
+            let fix_type = unified_fix_type(gps.fix_type);
 
             // GPS_RAW_INT owns fix type + sat count — cache them so GLOBAL_POSITION_INT reuses the same
             // values instead of emitting a conflicting fix/0-sats (which made the UI flash).

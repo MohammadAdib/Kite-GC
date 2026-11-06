@@ -59,6 +59,8 @@
   <BatteryWidget {telem} size={sizePx} widgetId="battery2" />
 {:else if id === 'gps'}
   <GpsWidget {telem} size={sizePx} />
+{:else if id === 'gps2'}
+  <GpsWidget {telem} size={sizePx} receiver={2} />
 {:else if id === 'rcLink'}
   <RcLinkWidget {telem} size={sizePx} />
 {:else if id === 'compass'}

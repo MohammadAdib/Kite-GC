@@ -52,7 +52,7 @@ export const PHONE_GEOMETRY: PhoneGridGeometry = {
 };
 
 /** Marc's default layout (PHONE_UI.md §6): page 1 AHI (L), Home · Altitude, GPS · Compass;
- *  page 2 Live AGL (W), Terrain Radar (L), Flight Mode · Battery. Speed, RC Link, Battery 2 off. */
+ *  page 2 Live AGL (W), Terrain Radar (L), Flight Mode · Battery. Speed, RC Link, Battery 2, GPS 2 off. */
 export const DEFAULT_PHONE_WIDGETS: PhoneWidgetsConfig = {
   entries: [
     { id: 'ahi', size: 'L', col: 0, active: true, page: 0, row: 0 },
@@ -67,6 +67,7 @@ export const DEFAULT_PHONE_WIDGETS: PhoneWidgetsConfig = {
     { id: 'speed', size: 'S', col: 0, active: false },
     { id: 'rcLink', size: 'S', col: 1, active: false },
     { id: 'battery2', size: 'S', col: 0, active: false },
+    { id: 'gps2', size: 'S', col: 1, active: false },
   ],
 };
 
@@ -143,6 +144,26 @@ export function phoneWidgetPage(cfg: PhoneWidgetsConfig, id: string): number | n
   return p ? p.page : null;
 }
 
+/** The free slot directly under `id`'s companion widget (same page and column, the companion's size),
+ *  or null when it has none, the companion isn't placed, or that slot is taken / off the grid. */
+function slotUnderCompanion(
+  cfg: PhoneWidgetsConfig,
+  id: string,
+): { page: number; row: number; col: number; size: WidgetSize } | null {
+  const companion = WIDGET_MAP.get(id)?.companionOf;
+  if (!companion) return null;
+  const packed = packPhone(cfg);
+  const a = packed.placements.find((p) => p.id === companion);
+  if (!a) return null;
+  const row = a.row + a.h;
+  if (row + a.h > PHONE_GEOMETRY.rows) return null;
+  const taken = packed.placements.some((p) =>
+    p.id !== id && p.page === a.page
+    && p.col < a.col + a.w && a.col < p.col + p.w
+    && p.row < row + a.h && row < p.row + p.h);
+  return taken ? null : { page: a.page, row, col: a.col, size: a.size };
+}
+
 /** Toggle a widget. Activation is refused (returns null) when the grid has no slot for it. */
 export function togglePhoneWidget(cfg: PhoneWidgetsConfig, id: string): PhoneWidgetsConfig | null {
   const cur = cfg.entries.find((e) => e.id === id);
@@ -152,10 +173,16 @@ export function togglePhoneWidget(cfg: PhoneWidgetsConfig, id: string): PhoneWid
   if (cur.active) {
     return normalizePhoneWidgets({ ...cfg, entries: cfg.entries.map((e) => (e.id === id ? { ...e, active: false } : e)) });
   }
+  const rest = cfg.entries.filter((e) => e.id !== id);
+  // A companion widget (GPS 2 → GPS) takes the slot directly under its partner, at its size, when
+  // that slot is free — never by moving anything else.
+  const under = slotUnderCompanion(cfg, id);
+  if (under) {
+    return normalizePhoneWidgets({ ...cfg, entries: [...rest, { ...cur, active: true, ...under }] });
+  }
   if (!canActivate(cfg.entries, id, cur.size, cur.col, PHONE_GEOMETRY)) return null;
   // Re-activated widgets go to the END of the order (they get the next free slot, never shove
   // others around).
-  const rest = cfg.entries.filter((e) => e.id !== id);
   return normalizePhoneWidgets({ ...cfg, entries: [...rest, { ...cur, active: true, page: undefined, row: undefined }] });
 }
 
